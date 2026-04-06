@@ -30,10 +30,10 @@ body{font-family:var(--f);font-size:16px;line-height:1.7;color:var(--text);backg
 .skip{position:absolute;top:-44px;left:0;background:var(--navy);color:#fff;padding:8px 16px;text-decoration:none;font-weight:700;z-index:2000;border-radius:0 0 6px 0}
 .skip:focus{top:0}
 /* Progress */
-.pw{max-width:1200px;margin:0 auto;height:4px;background:var(--rule)}
+.pw{max-width:100%;margin:0 auto;height:4px;background:var(--rule)}
 .pf{height:100%;background:linear-gradient(90deg,#4FC3F7,var(--teal),var(--green));transition:width .35s ease}
 /* Nav */
-nav{background:var(--navy);border-bottom:3px solid var(--teal);max-width:1200px;margin:0 auto;position:sticky;top:0;z-index:100}
+nav{background:var(--navy);border-bottom:3px solid var(--teal);max-width:100%;margin:0 auto;position:sticky;top:0;z-index:100}
 .nr{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
 .nr::-webkit-scrollbar{display:none}
 .nb{background:none;border:none;border-bottom:3px solid transparent;padding:13px 15px;font-size:11px;font-weight:700;color:rgba(255,255,255,.55);cursor:pointer;white-space:nowrap;font-family:var(--f);letter-spacing:.04em;text-transform:uppercase;transition:color .15s,border-color .15s;flex-shrink:0}
@@ -43,23 +43,23 @@ nav{background:var(--navy);border-bottom:3px solid var(--teal);max-width:1200px;
 .arr{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:30px;height:30px;border-radius:5px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .arr:hover{background:rgba(255,255,255,.22)}.arr:focus{outline:2px solid #4FC3F7;outline-offset:1px}
 /* Pages */
-.page{display:none;background:var(--white);max-width:1200px;margin:0 auto 32px;box-shadow:0 6px 40px rgba(0,0,0,.14)}
+.page{display:none;background:var(--white);max-width:100%;margin:0 auto 0;box-shadow:none;border-bottom:2px solid var(--rule)}
 .page.on{display:block}
 /* Cover */
-.cover{background:var(--navy);min-height:100vh;padding:72px 72px 56px;color:#fff;position:relative;overflow:hidden}
+.cover{background:var(--navy);min-height:100vh;padding:56px 64px 48px;color:#fff;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;column-gap:56px;align-items:start}
 .cover::before{content:'';position:absolute;top:0;right:0;width:600px;height:100%;background:radial-gradient(ellipse at 80% 30%, rgba(10,126,164,.18) 0%, transparent 65%);pointer-events:none}
 .cover::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#4FC3F7,var(--teal),var(--green),var(--purple))}
 .ck{font-size:10px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:24px}
 .ct{font-size:clamp(36px,5vw,62px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
 .ct em{color:#4FC3F7;font-style:normal}
-.cd{font-size:16.5px;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:10px;max-width:640px}
+.cd{font-size:16.5px;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:10px;max-width:100%}
 .cs{display:inline-block;background:rgba(79,195,247,.15);border:1px solid rgba(79,195,247,.35);color:#4FC3F7;font-size:10.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;padding:6px 14px;border-radius:4px;margin-bottom:36px}
 /* Cover meta grid */
 .cmeta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12);margin-bottom:40px}
 .cmeta .lb{font-size:9.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.36);margin-bottom:4px}
 .cmeta .vl{font-size:13px;color:rgba(255,255,255,.85);font-weight:600;line-height:1.5}
 /* Cover pyramid visual */
-.cpyr{margin:40px 0 44px;display:flex;flex-direction:column;gap:2px;align-items:stretch;max-width:620px}
+.cpyr{margin:40px 0 44px;display:flex;flex-direction:column;gap:2px;align-items:stretch;max-width:100%}
 .cpl{display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:6px;cursor:pointer;transition:filter .15s}
 .cpl:hover{filter:brightness(1.1)}
 .cpl.f{background:rgba(10,126,164,.32);border-left:4px solid #4FC3F7}
@@ -72,7 +72,7 @@ nav{background:var(--navy);border-bottom:3px solid var(--teal);max-width:1200px;
 .cpl-text{font-size:13.5px;font-weight:700;color:#fff;flex:1}
 .cpl-sub{font-size:11.5px;color:rgba(255,255,255,.55);margin-left:auto;white-space:nowrap}
 /* LWB thread indicator */
-.lwb-strip{background:rgba(180,83,9,.22);border:1px solid rgba(180,83,9,.4);border-radius:6px;padding:12px 18px;margin-bottom:40px;display:flex;align-items:center;gap:12px;max-width:620px}
+.lwb-strip{background:rgba(180,83,9,.22);border:1px solid rgba(180,83,9,.4);border-radius:6px;padding:12px 18px;margin-bottom:40px;display:flex;align-items:center;gap:12px;max-width:100%}
 .lwb-dot{width:10px;height:10px;border-radius:50%;background:var(--lwb);flex-shrink:0}
 .lwb-strip p{font-size:12px;color:rgba(255,255,255,.72);margin:0;line-height:1.5}
 .lwb-strip strong{color:rgba(255,255,255,.9)}
@@ -249,7 +249,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 .src li{font-size:13px;color:var(--mid);margin-bottom:8px;line-height:1.6}
 .src a{color:var(--teal);text-decoration:underline}
 /* Footer */
-.pfoot{background:var(--navy);color:rgba(255,255,255,.5);padding:22px 64px;font-size:11px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.pfoot{background:var(--navy);color:rgba(255,255,255,.45);padding:14px 48px;font-size:11px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:0}
 .pfoot strong{color:rgba(255,255,255,.82)}
 /* Inline download strip */
 .dl-inline{display:flex;align-items:center;gap:14px;background:var(--tl);border:1px solid var(--rule);border-radius:8px;padding:14px 18px;margin:0 0 28px;flex-wrap:wrap}
@@ -380,6 +380,81 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 .lever-edit:focus{outline:1px dashed var(--teal);border-radius:2px;background:rgba(10,126,164,.04)}
 /* ── Cover data status ──────────────────────────────────── */
 #cover-save-status{font-size:11.5px;color:rgba(255,255,255,.5);align-self:center}
+
+/* ── Edit mode system ───────────────────────────────────── */
+body:not(.edit-mode) [contenteditable]{
+  pointer-events:none;cursor:default;border-color:transparent;background:transparent;
+  box-shadow:none;outline:none
+}
+body:not(.edit-mode) .et-toolbar,.et-del-btn,.et-del-col-head{display:none}
+body.edit-mode .et-toolbar,.et-del-col-head{display:flex}
+body.edit-mode [contenteditable]{pointer-events:auto;cursor:text}
+body.edit-mode .lever-edit{cursor:text}
+body:not(.edit-mode) .lever-edit{pointer-events:none;cursor:default}
+
+.edit-toggle-btn{position:relative}
+.edit-toggle-btn.active{background:rgba(79,195,247,.35)!important;border-color:#4FC3F7!important}
+.edit-mode-banner{display:none;position:fixed;bottom:16px;right:16px;background:var(--teal);color:#fff;
+  padding:8px 16px;border-radius:20px;font-size:12px;font-weight:700;z-index:500;
+  box-shadow:0 4px 16px rgba(0,0,0,.25)}
+body.edit-mode .edit-mode-banner{display:block}
+
+/* ── Page layout — use full width ─────────────────────── */
+body{background:#eef1f6}
+.pb{padding:48px 60px 56px}
+.ph{padding:40px 60px 34px}
+
+/* ── Table — restore proper grid layout ────────────────── */
+.et-wrap .tw table{table-layout:auto}
+.et-del-col-head{width:52px;text-align:center}
+.et-del-col{width:44px;text-align:center;vertical-align:middle}
+
+/* ── Stage card items — fix double arrow ───────────────── */
+.sc-item{display:flex;align-items:flex-start;gap:0;padding:9px 12px;cursor:pointer}
+.sc-item:hover{background:var(--tl)}
+.sc-arrow{color:var(--teal);font-weight:900;font-size:14px;flex-shrink:0;transition:transform .2s;
+  line-height:1.55;display:inline-block;margin-right:8px;width:14px;text-align:center}
+.sc-item.open .sc-arrow{transform:rotate(90deg)}
+.sc-text{font-size:13px;color:var(--mid);line-height:1.55;flex:1}
+.sc-detail{display:none;padding:10px 14px 12px 22px;background:var(--tl);border-radius:4px;
+  margin:4px 0 6px;border-left:3px solid var(--teal)}
+.sc-detail p{font-size:12.5px;color:var(--mid);margin:0;line-height:1.65}
+.sc-item.open .sc-detail{display:block}
+/* Remove old sc-item-head wrapper approach — items are now direct flex */
+.sc-item-head{display:contents}
+
+/* ── CPD lever items ────────────────────────────────────── */
+.lever{padding:14px 16px}
+.lever-content strong{font-size:14px;font-weight:700;color:var(--navy)}
+.lever-content span{font-size:13px;display:block;margin-top:3px;color:var(--mid);line-height:1.6}
+
+/* ── Cover grid ─────────────────────────────────────────── */
+.cpyr{margin:0 0 24px;display:flex;flex-direction:column;gap:2px;align-items:stretch}
+.cmeta{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:16px}
+.tg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:24px}
+
+/* ── Cover link cards ─────────────────────────────────── */
+.dl-grid{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;align-items:flex-start}
+#cover-links-container{display:flex;flex-wrap:wrap;gap:10px}
+.cover-link-card{display:flex;align-items:stretch;gap:4px}
+.cover-link-card .dl-btn{flex:1;min-width:180px}
+.cl-edit-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);
+  border-radius:5px;padding:0 10px;cursor:pointer;font-size:13px;transition:background .15s;flex-shrink:0;
+  display:inline-flex;align-items:center}
+.cl-edit-btn:hover{background:rgba(255,255,255,.25);color:#fff}
+
+/* ── Remove unused space below LWB header ──────────────── */
+.ph.lwb{padding-bottom:28px}
+.lwb-banner{margin-bottom:16px}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media(max-width:900px){
+  .cover{grid-template-columns:1fr;padding:32px 24px}
+  .pb{padding:28px 20px 36px}
+  .ph{padding:28px 20px 22px}
+  .tg{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -398,6 +473,9 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 <button class="nb" onclick="go(6)" aria-current="false">6 · Frameworks</button>
 <button class="nb" onclick="go(7)" aria-current="false">7 · Action Plan</button>
 <div class="na">
+<button class="arr edit-toggle-btn" id="edit-toggle" onclick="toggleEditMode()" aria-label="Toggle edit mode" title="Toggle edit mode">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+</button>
 <button class="arr" onclick="prev()" aria-label="Previous section">&#8592;</button>
 <button class="arr" onclick="next()" aria-label="Next section">&#8594;</button>
 </div>
@@ -407,17 +485,25 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 
 <!-- ═══════════════════════════════════════════════════════ COVER -->
 <div class="page on" id="p0"><div class="cover">
+<div style="grid-column:1;display:flex;flex-direction:column;gap:0">
 <p class="ck">Weston College · Digital Pedagogy · Quality Team</p>
 <h1 class="ct">Digital Pedagogy<br><em>Toolkit</em><br>2026–27</h1>
-<p class="cd">A framework for building digital capability across Weston College — for staff, for learners, and for the organisation as a whole. Built on the Digital Learning Pyramid and the thread of Learning Without Barriers running through everything.</p>
-<span class="cs">Graeme Wright · Digital Pedagogy Coach · Consultation Document</span>
-
-<div class="lwb-strip">
+<p class="cd">A framework for building digital capability across Weston College — for staff, for learners, and for the organisation as a whole.</p>
+<span class="cs" style="margin-bottom:24px">Graeme Wright · Digital Pedagogy Coach · Consultation Document</span>
+<div class="lwb-strip" style="margin-bottom:24px">
 <div class="lwb-dot"></div>
-<p><strong>Learning Without Barriers</strong> is the thread running through every level of this framework. It is not a separate initiative. It is the lens through which every digital decision should be made — from Immersive Reader at induction to AT advocacy at Stage 3.</p>
+<p><strong>Learning Without Barriers</strong> is the thread through every level of this framework — from Immersive Reader at induction to AT advocacy at Stage 3.</p>
+</div>
+<div class="cmeta" style="margin-bottom:0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12)">
+<div><div class="lb">Author</div><div class="vl">Graeme Wright · Digital Pedagogy Coach</div></div>
+<div><div class="lb">Date</div><div class="vl">March 2026</div></div>
+<div><div class="lb">Status</div><div class="vl">Consultation · For discussion</div></div>
+<div><div class="lb">Standard</div><div class="vl">WCAG 2.2 AA</div></div>
+</div>
 </div>
 
-<div class="cpyr">
+<div style="grid-column:2;display:flex;flex-direction:column;gap:0">
+<div class="cpyr" style="margin-bottom:24px">
 <div class="cpl n" onclick="go(1)" style="cursor:pointer" tabindex="0" role="button" aria-label="Go to Digital Innovation section">
 <span class="cpl-badge">Innovation</span>
 <span class="cpl-text">Digital Innovation — Leading Change</span>
@@ -435,14 +521,7 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 </div>
 </div>
 
-<div class="cmeta">
-<div><div class="lb">Author</div><div class="vl">Graeme Wright<br>Digital Pedagogy Coach</div></div>
-<div><div class="lb">Date</div><div class="vl">March 2026</div></div>
-<div><div class="lb">Status</div><div class="vl">Consultation document<br>For discussion</div></div>
-<div><div class="lb">Accessibility</div><div class="vl">WCAG 2.2 AA<br>Compliant</div></div>
-</div>
-
-<p class="tl">Navigate to a section</p>
+<p class="tl" style="margin-bottom:10px">Navigate to a section</p>
 <div class="tg">
 <button class="tb" onclick="go(1)"><span class="tn">Section 1</span><span class="tla">The Pyramid — framework, ETF DTPF, DigCompEdu</span></button>
 <button class="tb" onclick="go(2)"><span class="tn">Section 2</span><span class="tla">Digital Skills — Top 10, Learn/Work/Life, MUST and MIGHT</span></button>
@@ -453,7 +532,9 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 <button class="tb" onclick="go(7)"><span class="tn">Section 7</span><span class="tla">Action Plan — 10 responsibilities, evidence log, JSON data</span></button>
 </div>
 
-<div class="dl-bar">
+</div><!-- end right col -->
+
+<div class="dl-bar" style="grid-column:1 / -1">
 <p class="dl-lbl">Linked documents and data</p>
 <div class="dl-grid">
 <div id="cover-links-container">
@@ -820,45 +901,45 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 <div class="sn">Stage 2A · Inclusion</div>
 <div class="st">Adopting — Developing</div>
 <div class="ss">ETF DTPF Stage 2A · DigCompEdu B1 · Developing practitioners</div>
-<ul>
-<li>Assignments with rubrics; feedback via Grades tab</li>
-<li>Forms for formative assessment — results used in planning</li>
-<li>WCAG 2.2 AA as a consistent professional habit</li>
-<li>Jisc AI Literacy Module 1 completed</li>
-<li>Live Captions enabled as default in all Teams sessions</li>
-<li>Copilot awareness — verify all AI outputs</li>
-<li>Book with Me for scheduling; OneNote or Loops for notes</li>
-<li>Copilot for email and data interrogation</li>
+<ul class="sc-list">
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Assignments with rubrics; feedback via Grades tab</span><div class="sc-detail"><p><strong>CPD route:</strong> COG — Digital Learning Environments. 1:1 coaching with Digital Pedagogy Coach. <strong>Evidence:</strong> Teams Assignment with rubric visible in class Team. Grades tab used for written feedback return.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Forms for formative assessment — results used in planning</span><div class="sc-detail"><p><strong>CPD route:</strong> Teach Meet. 1:1 coaching. Extended NSI Term 1. <strong>Evidence:</strong> Forms quiz embedded in Teams. Lesson plan reference to quiz data informing next steps.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">WCAG 2.2 AA as a consistent professional habit</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop (iTrent). SharePoint Quick Guide videos. <strong>Evidence:</strong> Accessibility Checker run on all resources. Zero errors. Captions on all video content.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 1 completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc free webinar — booking via jisc.ac.uk. Prerequisite for any AI tool adoption. <strong>Evidence:</strong> Completion certificate. Recorded on iTrent CPD log.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Live Captions enabled as default in all Teams sessions</span><div class="sc-detail"><p><strong>CPD route:</strong> AT SharePoint video (2 mins). NSI or coaching conversation. <strong>Evidence:</strong> Live Captions on in Teams settings. Learner Voice referencing accessible sessions.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Copilot awareness — verify all AI outputs</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc AI Literacy Module 1. COG — Using AI to support learning. 1:1 coaching. <strong>Evidence:</strong> Staff can describe how they verify AI outputs. Use logged with critical reflection.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Book with Me for scheduling; OneNote or Loops for notes</span><div class="sc-detail"><p><strong>CPD route:</strong> Self-guided via Microsoft Learn. 1:1 coaching. <strong>Evidence:</strong> Book with Me link in email signature. Meeting notes in OneNote or Loops with consistent structure.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Copilot for email and data interrogation</span><div class="sc-detail"><p><strong>CPD route:</strong> 1:1 coaching session. Microsoft Learn for Educators path. Prerequisite: Jisc AI Literacy Module 1. <strong>Evidence:</strong> Staff can use Copilot to summarise email threads and interrogate spreadsheet data.</p></div></li>
 </ul>
 </div>
 <div class="sc s2b">
 <div class="sn">Stage 2B · Inclusion</div>
 <div class="st">Adopting — Embedding</div>
 <div class="ss">ETF DTPF Stage 2B · DigCompEdu B2 · Embedding practitioners</div>
-<ul>
-<li>Accessibility by design — every resource, every time</li>
-<li>EDS mapping articulated in Business Plan</li>
-<li>Forms → Excel → Copilot formative pipeline</li>
-<li>AT advocacy — proactive, not reactive</li>
-<li>Digital Health Check run half-termly</li>
-<li>Power Automate for repetitive admin tasks</li>
-<li>Jisc AI Literacy Module 2 completed</li>
-<li>DigCompEdu self-assessment completed</li>
+<ul class="sc-list">
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Accessibility by design — every resource, every time</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop. SharePoint Quick Guide videos. Jisc FE Accessibility Training Matrix Phase 2. <strong>Evidence:</strong> All shared resources pass Accessibility Checker. Captions on all video. Zero accessibility errors visible in Learning Walk.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">EDS mapping articulated in Business Plan</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Pedagogy Coach conversation with HoA. TLAM support with QIP Tab 2. <strong>Evidence:</strong> Business Plan includes named EDS categories mapped to digital activity. Digital hours evidenced against EDS.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Forms → Excel → Copilot formative pipeline</span><div class="sc-detail"><p><strong>CPD route:</strong> 1:1 coaching. COG — Digital TLA. Jisc AI Literacy Module 2. <strong>Evidence:</strong> Forms quiz exports to Excel. Copilot used to summarise misconception patterns. Evidence in lesson planning.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">AT advocacy — proactive, not reactive</span><div class="sc-detail"><p><strong>CPD route:</strong> AT SharePoint resources. SEND team collaboration. 1:1 coaching. <strong>Evidence:</strong> AT tools offered to all learners at induction — not only those with recorded needs. ILP references AT where applicable.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Digital Health Check run half-termly</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Lead induction. Digital Pedagogy Coach coaching. <strong>Evidence:</strong> Health Check Form completed. Results shared with TLAM. Actions logged and followed up.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Power Automate for repetitive admin tasks</span><div class="sc-detail"><p><strong>CPD route:</strong> Microsoft Learn for Educators. 1:1 coaching. Stage 3 peer sharing. <strong>Evidence:</strong> At least one working flow automating a recurring task (e.g. Forms data notification, file organisation).</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 2 completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc free webinar — booking via jisc.ac.uk. Builds on Module 1. <strong>Evidence:</strong> Completion certificate. Recorded on iTrent CPD log.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">DigCompEdu self-assessment completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Self-guided via joint-research-centre.ec.europa.eu/digcompedu_en. Review results with Digital Pedagogy Coach. <strong>Evidence:</strong> Personal DigCompEdu profile on record. Mapped against DTPF stage.</p></div></li>
 </ul>
 </div>
 <div class="sc s3">
 <div class="sn">Stage 3 · Innovation</div>
 <div class="st">Leading</div>
 <div class="ss">ETF DTPF Stage 3 · DigCompEdu C1–C2 · Digital Leads and Coaches</div>
-<ul>
-<li>Coaching Stage 1 and 2 colleagues</li>
-<li>Leading institutional AI thinking and policy</li>
-<li>Digital inclusion advocacy at college level</li>
-<li>Digital Champions development</li>
-<li>Power Automate advanced flows; Power BI dashboards</li>
-<li>Jisc AI Literacy Module 3 completed</li>
-<li>MCE / 21CLD certification (aspirational)</li>
-<li>Contributing to SAR, CQRPs, and QIP with digital evidence</li>
+<ul class="sc-list">
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Coaching Stage 1 and 2 colleagues</span><div class="sc-detail"><p><strong>CPD route:</strong> DfE Advanced Mentoring Skills (Graeme's approach). Digital Lead induction. Peer coaching model. <strong>Evidence:</strong> Coaching log. Staff testimonials. TLAM referral records. Stage 1/2 staff progression data.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Leading institutional AI thinking and policy</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc AI Literacy Module 3. ETF/SET conference. External CPD. <strong>Evidence:</strong> College AI position statement. FE/HE distinction guidance document. COG AI theme designed and delivered.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Digital inclusion advocacy at college level</span><div class="sc-detail"><p><strong>CPD route:</strong> QIP process. SAR contribution. Learning Walk co-design with TLAMs. <strong>Evidence:</strong> Digital inclusion AFIs in QIPs. SAR digital dimension written. Ofsted Inclusion evidence pack contribution.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Digital Champions development</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Champions programme (Graeme's design). iDEA Award framework. DCI peer mentoring. <strong>Evidence:</strong> Named Champions per area. Project completion records. Learner testimonials. Teams community analytics.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Power Automate advanced flows; Power BI dashboards</span><div class="sc-detail"><p><strong>CPD route:</strong> Microsoft Learn for Educators advanced paths. MCE preparation. Peer sharing. <strong>Evidence:</strong> Working multi-step flows shared with Digital Lead network. Power BI dashboard used in PPR or CQRP.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 3 completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc free webinar — booking via jisc.ac.uk. Covers ethical AI, academic integrity, bias. <strong>Evidence:</strong> Completion certificate. Recorded on iTrent CPD log. Module 3 content incorporated into COG or Teach Meet.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">MCE / 21CLD certification (aspirational)</span><div class="sc-detail"><p><strong>CPD route:</strong> Microsoft Certified Educator preparation via learn.microsoft.com/educator-center. 21CLD curriculum study. <strong>Evidence:</strong> MCE digital badge. 21CLD learning activity design shared with colleagues.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Contributing to SAR, CQRPs, and QIP with digital evidence</span><div class="sc-detail"><p><strong>CPD route:</strong> Quality Team collaboration (Emily Green, TLAMs). Digital Coaching Platform data. <strong>Evidence:</strong> Named contribution to SAR digital dimension. CQRP TLA Overview includes digital skills coaching records. QIP digital AFIs tracked.</p></div></li>
 </ul>
 </div>
 </div>
@@ -1300,6 +1381,29 @@ td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
 let cur = 0;
 const total = 8;
 
+// ── EDIT MODE ────────────────────────────────────────────────
+let editMode = false;
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const btn = document.getElementById('edit-toggle');
+  if (btn) {
+    btn.classList.toggle('active', editMode);
+    btn.setAttribute('aria-label', editMode ? 'Lock editing' : 'Unlock editing');
+    btn.setAttribute('title', editMode ? 'Lock editing' : 'Unlock editing (pencil)');
+  }
+  // Make all contenteditable actually editable or not
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+  // Re-enable for Action Plan fields which are always editable
+  if (!editMode) {
+    document.querySelectorAll('.resp-field, .editable-field').forEach(el => {
+      el.contentEditable = 'true';
+    });
+  }
+}
+
 function go(n) {
   document.querySelectorAll('.page').forEach((p, i) => p.classList.toggle('on', i === n));
   document.querySelectorAll('.nb').forEach((b, i) => {
@@ -1331,17 +1435,8 @@ document.querySelectorAll('.cpl[tabindex]').forEach(el => {
 // STAGE CARD — EXPANDABLE ITEMS
 // ═══════════════════════════════════════════════════════════════════
 function toggleSCItem(li) {
-  // Wrap plain children into head div if not already done
-  if (!li.querySelector('.sc-item-head')) {
-    const arrow = li.querySelector('.sc-arrow');
-    const text = li.querySelector('.sc-text');
-    const detail = li.querySelector('.sc-detail');
-    const head = document.createElement('div');
-    head.className = 'sc-item-head';
-    if (arrow) head.appendChild(arrow);
-    if (text) head.appendChild(text);
-    li.insertBefore(head, detail);
-  }
+  // Don't toggle if user clicked on an edit field in edit mode
+  if (editMode && window.getSelection && window.getSelection().toString()) return;
   li.classList.toggle('open');
 }
 
@@ -1564,7 +1659,7 @@ const DEFAULT_DATA = {
   meta: {
     schemaVersion: "1.0", author: "Graeme Wright", role: "Digital Pedagogy Coach",
     college: "Weston College Group", pilotStart: "2026-01-01", pilotEnd: "2027-07-31",
-    reviewDates: { threeMonth: "2026-10-01", nineMonth: "2027-04-01", eighteenMonth: "2027-07-01" },
+    reviewDates: { threeMonth: "2026-07-01", nineMonth: "2027-01-01", eighteenMonth: "2027-10-01", closeOut: "2027-12-01" },
     compliance: {
       dataStorage: "Microsoft OneDrive — Weston College Microsoft 365 tenant",
       iso27001: "Microsoft ISO/IEC 27001:2022 cert no. IS 533913. AES-256 at rest, TLS 1.2+ in transit, access control via college AAD, automated backup.",
@@ -1589,7 +1684,7 @@ const DEFAULT_DATA = {
     10: { rag: "Amber — DigiWest as internal-facing engagement. No formal events calendar for 2026/27 yet.", done: "Co-organised and delivered DigiWest. Informal engagement with Jisc and ETF. External-facing consultation documents produced.", next: "Populate 2026/27 events calendar — BETT (Jan), Digifest (March), ETF/SET, Jisc BDC Community of Practice. Block time now.", milestone: "Events calendar populated by end of April. One external event per half-term from September.", kpi: "Value for Money · Staff Capability · Professional Collaboration" }
   },
   freetext: {
-    phase3notes: "Key Phase 3 commitments (Appendix D governance):\n— 3-month review: October 2026. Baseline data established. Jisc Discovery Tool deployed. First iTrent session delivered.\n— 9-month review: April 2027. Progress against all 8 KPI areas. Digital Leads in place. AI systematised via COGs.\n— 18-month review: July 2027. Comprehensive evidence portfolio. Recommendation on permanent positioning.",
+    phase3notes: "Key Phase 3 review milestones (starting April 2026):\n— 3-month review: July 2026. Baseline data established. Coaching relationships initiated. Jisc Discovery Tool deployed. First iTrent accessibility session delivered.\n— 9-month review: January 2027. Progress against all 8 KPI areas. Digital Leads in place and Health Checks running. AI training systematised via COGs.\n— 18-month review: October 2027. Comprehensive evidence portfolio. Recommendation on permanent positioning.\n— December 2027 (20-month close-out): Final evidence portfolio complete. SAR digital dimension contribution. Governance report to VP Quality and HR.",
     coachinglog: "• Feb–March 2026: Digital inclusion Learning Walks with Emily Green and Quality Team. QIP actions added.\n• Oct 2025: AI training — Sixth Form, Maths, Engineering, ESOL, Learning Support, PLS teams.\n• Various: Individual coaching — Jenny Gamlin, Claude Ujile, Katie Middleton, Kara Weymouth, Jed Randall, others.\n• DigiWest: co-organised and delivered. Follow-up coaching requests sustained throughout year.",
     cpdlog: "Add session records here as they are delivered.",
     testimoniallog: "Emily Green (TLA Manager): \"This has been vital for our work as a Quality Team.\" — January 2026\nKara Weymouth (Healthcare): \"What sets Graeme apart is that he understands teaching first.\" — January 2026\nJed Randall (Maths): \"Essential for driving high-quality TLA and promoting digital inclusion.\" — January 2026",
@@ -1885,6 +1980,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<div class="edit-mode-banner" role="status" aria-live="polite">✏ Edit mode — click any field to edit</div>
 <!-- Link editor modal -->
 <div class="modal-overlay" id="link-modal" role="dialog" aria-modal="true" aria-label="Edit link">
   <div class="modal">

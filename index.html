@@ -327,6 +327,59 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
   .fw-grid{grid-template-columns:1fr}
   .tool-grid{grid-template-columns:1fr}
 }
+
+/* ── Editable table system ─────────────────────────────── */
+.et-wrap{margin:20px 0}
+.et-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:0;background:var(--navy);padding:8px 14px;border-radius:6px 6px 0 0}
+.et-label{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);flex:1}
+.et-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:4px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--f);transition:background .15s}
+.et-btn:hover{background:rgba(255,255,255,.25)}
+.et-btn:focus{outline:2px solid #4FC3F7;outline-offset:2px}
+.et-wrap .tw{border-radius:0 0 8px 8px;margin-top:0;border-top:none}
+.et-th{background:var(--navy);color:#fff;min-width:80px}
+.et-th:focus{outline:2px solid #4FC3F7;outline-offset:-2px}
+td[contenteditable="true"]:focus, th[contenteditable="true"]:focus{outline:2px solid var(--teal);outline-offset:-2px;background:rgba(10,126,164,.06)}
+td[contenteditable="true"]:hover:not(:focus){background:var(--tl)}
+.et-del-col-head{width:48px;background:var(--navy);border:none;padding:4px}
+.et-del-col{width:40px;padding:4px;text-align:center;border-left:1px solid var(--rule)}
+.et-del-btn{background:var(--rl);color:var(--red);border:none;border-radius:3px;padding:2px 6px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.et-del-btn:hover{background:var(--red);color:#fff}
+/* ── Stage card expandable items ───────────────────────── */
+.sc-list{list-style:none;padding:0;margin:0}
+.sc-item{padding:0;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .1s}
+.sc-item:last-child{border-bottom:none}
+.sc-item:hover{background:var(--slate)}
+.sc-item-head{display:flex;align-items:flex-start;gap:8px;padding:8px 0 8px 0}
+.sc-arrow{color:var(--teal);font-weight:700;font-size:15px;flex-shrink:0;transition:transform .2s;line-height:1.4;display:inline-block}
+.sc-item.open .sc-arrow{transform:rotate(90deg)}
+.sc-text{font-size:13px;color:var(--mid);line-height:1.55;flex:1}
+.sc-detail{display:none;padding:10px 12px 12px 22px;background:rgba(10,126,164,.05);border-radius:4px;margin:2px 0 6px}
+.sc-detail p{font-size:12.5px;color:var(--mid);margin:0;line-height:1.65}
+.sc-item.open .sc-detail{display:block}
+/* ── Cover link cards ──────────────────────────────────── */
+.cover-link-card{display:flex;align-items:stretch;gap:4px;margin-bottom:8px}
+.cover-link-card .dl-btn{flex:1}
+.cl-edit-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);border-radius:5px;padding:0 10px;cursor:pointer;font-size:14px;transition:background .15s;flex-shrink:0}
+.cl-edit-btn:hover{background:rgba(255,255,255,.25);color:#fff}
+.cl-edit-btn:focus{outline:2px solid #4FC3F7}
+/* ── Link editor modal ──────────────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:28px;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:16px}
+.modal label{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:4px;margin-top:14px}
+.modal label:first-of-type{margin-top:0}
+.modal input[type=text]{width:100%;border:1.5px solid var(--rule);border-radius:6px;padding:9px 12px;font-size:13.5px;font-family:var(--f);color:var(--text)}
+.modal input:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px rgba(10,126,164,.12)}
+.modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+.modal-save{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--f)}
+.modal-save:hover{background:var(--teal)}
+.modal-cancel{background:var(--slate);color:var(--mid);border:none;border-radius:6px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--f)}
+.modal-del{background:var(--rl);color:var(--red);border:none;border-radius:6px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--f);margin-right:auto}
+/* ── Lever editable ─────────────────────────────────────── */
+.lever-edit:focus{outline:1px dashed var(--teal);border-radius:2px;background:rgba(10,126,164,.04)}
+/* ── Cover data status ──────────────────────────────────── */
+#cover-save-status{font-size:11.5px;color:rgba(255,255,255,.5);align-self:center}
 </style>
 </head>
 <body>
@@ -337,13 +390,13 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 <nav aria-label="Document sections">
 <div class="nr">
 <button class="nb on" onclick="go(0)" aria-current="page">Cover</button>
-<button class="nb" onclick="go(1)" aria-current="false">1 — The Pyramid</button>
-<button class="nb" onclick="go(2)" aria-current="false">2 — Digital Skills</button>
-<button class="nb" onclick="go(3)" aria-current="false">3 — Teacher Framework</button>
-<button class="nb" onclick="go(4)" aria-current="false">4 — CPD &amp; Development</button>
-<button class="nb" onclick="go(5)" aria-current="false">5 — Learning Without Barriers</button>
-<button class="nb" onclick="go(6)" aria-current="false">6 — Frameworks &amp; Glossary</button>
-<button class="nb" onclick="go(7)" aria-current="false">7 — Action Plan</button>
+<button class="nb" onclick="go(1)" aria-current="false">1 · Pyramid</button>
+<button class="nb" onclick="go(2)" aria-current="false">2 · Digital Skills</button>
+<button class="nb" onclick="go(3)" aria-current="false">3 · Teacher FW</button>
+<button class="nb" onclick="go(4)" aria-current="false">4 · CPD</button>
+<button class="nb" onclick="go(5)" aria-current="false">5 · LWB</button>
+<button class="nb" onclick="go(6)" aria-current="false">6 · Frameworks</button>
+<button class="nb" onclick="go(7)" aria-current="false">7 · Action Plan</button>
 <div class="na">
 <button class="arr" onclick="prev()" aria-label="Previous section">&#8592;</button>
 <button class="arr" onclick="next()" aria-label="Next section">&#8594;</button>
@@ -391,25 +444,52 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 
 <p class="tl">Navigate to a section</p>
 <div class="tg">
-<button class="tb" onclick="go(1)"><span class="tn">Section 1</span><span class="tla">The Pyramid — three levels explained, ETF DTPF, DigCompEdu</span></button>
-<button class="tb" onclick="go(2)"><span class="tn">Section 2</span><span class="tla">Digital Skills — Top 10, General, MUST and MIGHT</span></button>
-<button class="tb" onclick="go(3)"><span class="tn">Section 3</span><span class="tla">Teacher Framework — stages, tools, new teacher pathway</span></button>
-<button class="tb" onclick="go(4)"><span class="tn">Section 4</span><span class="tla">CPD and Development — Quality Handbook, Jisc, ETF</span></button>
-<button class="tb" onclick="go(5)"><span class="tn">Section 5</span><span class="tla">Learning Without Barriers — inclusion, AT, accessibility</span></button>
+<button class="tb" onclick="go(1)"><span class="tn">Section 1</span><span class="tla">The Pyramid — framework, ETF DTPF, DigCompEdu</span></button>
+<button class="tb" onclick="go(2)"><span class="tn">Section 2</span><span class="tla">Digital Skills — Top 10, Learn/Work/Life, MUST and MIGHT</span></button>
+<button class="tb" onclick="go(3)"><span class="tn">Section 3</span><span class="tla">Teacher Framework — four stages, tools, new teacher pathway</span></button>
+<button class="tb" onclick="go(4)"><span class="tn">Section 4</span><span class="tla">CPD and Development — Quality Handbook levers, assessment tools</span></button>
+<button class="tb" onclick="go(5)"><span class="tn">Section 5</span><span class="tla">Learning Without Barriers — the proposal, inclusion, AT</span></button>
 <button class="tb" onclick="go(6)"><span class="tn">Section 6</span><span class="tla">Frameworks and Glossary — plain English explainers</span></button>
+<button class="tb" onclick="go(7)"><span class="tn">Section 7</span><span class="tla">Action Plan — 10 responsibilities, evidence log, JSON data</span></button>
 </div>
 
 <div class="dl-bar">
-<p class="dl-lbl">Download the companion documents</p>
+<p class="dl-lbl">Linked documents and data</p>
 <div class="dl-grid">
-<a href="./teacher-digital-skills-pyramid.docx" class="dl-btn" download>
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-<span><span class="dl-title">Teacher Digital Skills Pyramid</span><span class="dl-sub">Full framework · Word document</span></span>
-</a>
-<a href="./digital-skills-framework.docx" class="dl-btn" download>
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-<span><span class="dl-title">Digital Skills Framework</span><span class="dl-sub">All 30 areas · Word document</span></span>
-</a>
+<div id="cover-links-container">
+<div class="cover-link-card" id="clc-0">
+  <a id="cl-href-0" href="./teacher-digital-skills-pyramid.docx" class="dl-btn" download>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+    <span><span class="dl-title" id="cl-title-0">Teacher Digital Skills Pyramid</span><span class="dl-sub" id="cl-sub-0">Full framework · Word document</span></span>
+  </a>
+  <button class="cl-edit-btn" onclick="editCoverLink(0)" aria-label="Edit link">✏</button>
+</div>
+<div class="cover-link-card" id="clc-1">
+  <a id="cl-href-1" href="./digital-skills-framework.docx" class="dl-btn" download>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+    <span><span class="dl-title" id="cl-title-1">Digital Skills Framework</span><span class="dl-sub" id="cl-sub-1">All 30 areas · Word document</span></span>
+  </a>
+  <button class="cl-edit-btn" onclick="editCoverLink(1)" aria-label="Edit link">✏</button>
+</div>
+</div>
+<button class="dl-btn" onclick="addCoverLink()" style="background:rgba(255,255,255,.05);border-style:dashed;gap:8px">
+  <span style="font-size:18px;line-height:1">+</span>
+  <span><span class="dl-title">Add a link card</span><span class="dl-sub">Add any resource or URL</span></span>
+</button>
+</div>
+
+<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)">
+<p class="dl-lbl" style="width:100%;margin-bottom:4px">Action plan data</p>
+<label class="dl-btn" for="cover-json-load" style="cursor:pointer">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+  <span><span class="dl-title">Load JSON</span><span class="dl-sub">Restore from OneDrive</span></span>
+  <input type="file" id="cover-json-load" accept=".json" style="display:none" onchange="loadJSON(this)">
+</label>
+<button class="dl-btn" onclick="saveJSON()" style="background:rgba(79,195,247,.2);border-color:rgba(79,195,247,.4)">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+  <span><span class="dl-title">Save JSON</span><span class="dl-sub">Download for OneDrive</span></span>
+</button>
+<div id="cover-save-status" style="display:none;align-self:center;font-size:11px;color:rgba(255,255,255,.5)"></div>
 </div>
 </div>
 </div></div>
@@ -445,15 +525,17 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 </div>
 
 <h2>How the Pyramid aligns to the professional frameworks</h2>
-<div class="tw"><table>
-<thead><tr><th>Pyramid Level</th><th>ETF DTPF Stage</th><th>DigCompEdu Level</th><th>Weston College Focus</th></tr></thead>
+<div class="et-wrap" id="et-pyramid-align">
+<div class="et-toolbar"><span class="et-label">Editable table</span><button class="et-btn" onclick="etAddRow('et-pyramid-align')">+ Row</button><button class="et-btn" onclick="etAddCol('et-pyramid-align')">+ Column</button></div>
+<div class="tw"><table id="tbl-pyramid-align">
+<thead><tr><th contenteditable="true" class="et-th">Pyramid Level</th><th contenteditable="true" class="et-th">ETF DTPF Stage</th><th contenteditable="true" class="et-th">DigCompEdu Level</th><th contenteditable="true" class="et-th">Weston College Focus</th><th class="et-del-col-head"><button class="et-del-btn et-del-col" onclick="etDelCol('et-pyramid-align',this)" title="Delete last column">−col</button></th></tr></thead>
 <tbody>
-<tr><td><span class="pill pill-f">Foundations</span> Level 1</td><td>Stage 1: Exploring</td><td>A1–A2 Newcomer to Explorer</td><td>Confident M365 use, accessibility habits established, WCAG 2.2 AA as professional standard from day one</td></tr>
-<tr><td><span class="pill pill-i">Inclusion</span> Level 2a</td><td>Stage 2A: Adopting, Developing</td><td>B1 Integrator</td><td>Digital tools purposefully integrated into TLA; learner inclusion driving decisions; AT in active use</td></tr>
-<tr><td><span class="pill pill-i">Inclusion</span> Level 2b</td><td>Stage 2B: Adopting, Embedding</td><td>B2 Expert</td><td>Accessibility by design; AI used critically and transparently; EDS mapping articulated; QFT and UDL embedded</td></tr>
-<tr><td><span class="pill pill-n">Innovation</span> Level 3</td><td>Stage 3: Leading</td><td>C1–C2 Leader to Pioneer</td><td>Coaching others; shaping strategy; AI orchestration; driving institutional change; Digital Champions development</td></tr>
+<tr><td contenteditable="true"><span class="pill pill-f">Foundations</span> Level 1</td><td contenteditable="true">Stage 1: Exploring</td><td contenteditable="true">A1–A2 Newcomer to Explorer</td><td contenteditable="true">Confident M365 use, accessibility habits established, WCAG 2.2 AA as professional standard from day one</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><span class="pill pill-i">Inclusion</span> Level 2a</td><td contenteditable="true">Stage 2A: Adopting, Developing</td><td contenteditable="true">B1 Integrator</td><td contenteditable="true">Digital tools purposefully integrated into TLA; learner inclusion driving decisions; AT in active use</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><span class="pill pill-i">Inclusion</span> Level 2b</td><td contenteditable="true">Stage 2B: Adopting, Embedding</td><td contenteditable="true">B2 Expert</td><td contenteditable="true">Accessibility by design; AI used critically and transparently; EDS mapping articulated; QFT and UDL embedded</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><span class="pill pill-n">Innovation</span> Level 3</td><td contenteditable="true">Stage 3: Leading</td><td contenteditable="true">C1–C2 Leader to Pioneer</td><td contenteditable="true">Coaching others; shaping strategy; AI orchestration; driving institutional change; Digital Champions development</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
 </tbody>
-</table></div>
+</table></div></div>
 
 <h2>What is the ETF DTPF?</h2>
 <div class="co a"><p class="co-t">ETF DTPF — Digital Teaching Professional Framework — explained in plain English</p>
@@ -475,7 +557,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 <p>The college's three-context model connects digital skills to what they are actually for. <strong>Learn:</strong> how staff and learners develop digital capability for study and professional growth. <strong>Work:</strong> how digital skills translate into employment-ready practice in vocational and professional contexts. <strong>Life:</strong> how inclusive digital practice enables every learner to participate fully in society, access services, and live independently. Every level of the Pyramid speaks to all three contexts. Every coaching conversation should connect the skill being developed to at least one of them.</p></div>
 
 </div>
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality</span><span>Section 1 of 6 · WCAG 2.2 AA</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 1 · WCAG 2.2 AA</span></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ PAGE 2: DIGITAL SKILLS -->
@@ -681,7 +763,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 
 </div><!-- end tabs -->
 </div>
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality</span><span>Section 2 of 6 · WCAG 2.2 AA</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 2 · WCAG 2.2 AA</span></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ PAGE 3: TEACHER FRAMEWORK -->
@@ -717,20 +799,21 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 </div>
 
 <h2>All Four Stages at a glance</h2>
+<p style="color:var(--lite);font-size:13.5px;margin-bottom:20px">Click any <span style="font-weight:700;color:var(--navy)">›</span> item to expand delivery detail and CPD suggestions.</p>
 <div class="stages">
 <div class="sc s1">
 <div class="sn">Stage 1 · Foundations</div>
 <div class="st">Exploring</div>
 <div class="ss">ETF DTPF Stage 1 · DigCompEdu A1–A2 · New and developing teachers</div>
-<ul>
-<li>Confident M365 core use (Teams, Outlook, OneDrive, Word)</li>
-<li>Class Team set up with education template</li>
-<li>Accessibility Checker run on every resource</li>
-<li>Alt text, heading styles, WCAG 2.2 AA basics</li>
-<li>Immersive Reader demonstrated at induction — to all learners</li>
-<li>AT awareness — promote tools proactively</li>
-<li>Basic assignment and record-keeping in Teams</li>
-<li>Jisc Discovery Tool completed (Teaching Staff set)</li>
+<ul class="sc-list">
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Confident M365 core use (Teams, Outlook, OneDrive, Word)</span><div class="sc-detail"><p><strong>CPD route:</strong> NSI Digital TLA session. Extended NSI Wednesdays Term 1. Self-paced via Microsoft Learn for Educators (free). <strong>Evidence:</strong> Staff can navigate Teams, share files in OneDrive, send professional email.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Class Team set up with education template</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Pedagogy Coach 1:1 coaching. Teach Meet session on Teams Environments. <strong>Evidence:</strong> Teams Digital Health Check. Channels reflect Scheme of Learning. Students invited.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Accessibility Checker run on every resource</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop (iTrent). NSI digital session. Coaching session. <strong>Evidence:</strong> Resources uploaded to Teams pass Accessibility Checker. Learning Walk observation. WCAG 2.2 AA compliance visible in shared documents.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Alt text, heading styles, WCAG 2.2 AA basics</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop. SharePoint Quick Guide videos (5 videos, each under 5 mins). <strong>Evidence:</strong> Alt text visible on images in shared resources. Heading styles used — not manual bold. Accessibility Checker shows zero errors.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Immersive Reader demonstrated at induction — to all learners</span><div class="sc-detail"><p><strong>CPD route:</strong> NSI Digital TLA session demonstrates the approach. AT SharePoint videos. Coaching session. <strong>Evidence:</strong> Staff can locate and launch Immersive Reader in Teams, Word, and OneNote. Learner Voice referencing accessible learning environments.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">AT awareness — promote tools proactively</span><div class="sc-detail"><p><strong>CPD route:</strong> AT SharePoint resources (Immersive Reader, Live Captions, Read &amp; Write Gold videos). SEND team briefing. Coaching conversation. <strong>Evidence:</strong> Staff can name the AT tools available in their area and demonstrate at least one to learners.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Basic assignment and record-keeping in Teams</span><div class="sc-detail"><p><strong>CPD route:</strong> NSI session. COG Digital Pedagogy — Digital Learning Environments. 1:1 coaching. <strong>Evidence:</strong> At least one Teams Assignment created with due date and brief. Digital progress records maintained.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc Discovery Tool completed (Teaching Staff set)</span><div class="sc-detail"><p><strong>CPD route:</strong> Deployed September each year. Results reviewed in coaching conversation with Digital Pedagogy Coach or TLAM. <strong>Evidence:</strong> Completed profile on record. Personalised learning pathway generated by the tool.</p></div></li>
 </ul>
 </div>
 <div class="sc s2a">
@@ -788,7 +871,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 </div>
 
 </div>
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality</span><span>Section 3 of 6 · WCAG 2.2 AA</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 3 · WCAG 2.2 AA</span></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ PAGE 4: CPD & DEVELOPMENT -->
@@ -806,32 +889,32 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 <h2>CPD Levers — Stage 1: Foundations</h2>
 <p>These mechanisms from the Quality Handbook are most relevant for supporting staff at Stage 1 (Exploring). Each is named as it appears in the handbook.</p>
 <div class="lever-list">
-<div class="lever"><div class="lever-dot" style="background:var(--tl)">📋</div><div class="lever-content"><strong>New Staff Induction (NSI) and Extended NSI</strong><span>The four-day academic staff induction includes a dedicated Digital TLA session. The Extended NSI on Wednesdays in Term 1 includes additional Digital TLA sessions. The induction timetable includes digital orientation tasks (SharePoint, Teams, SMART Board, Microsoft Forms) as a standard starting point.</span></div><div class="lever-when">Monthly throughout year; Aug–Sept cohorts largest</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--tl)">🎯</div><div class="lever-content"><strong>COGs — Digital Pedagogy</strong><span>Four times a year, staff upskill in different elements of Digital Pedagogy. The four focus areas: Digital Learning Environments; Accessibility and Inclusion; Digital TLA; Using AI to support learning; 21st Century Learning Design.</span></div><div class="lever-when">Four times per year</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--tl)">👁</div><div class="lever-content"><strong>Developmental Observations</strong><span>New staff receive a developmental observation in addition to any learning walk. The observation focuses on the quality of TLA, including the environment and resources available online. Digital Accessibility, Environments, and Inclusion can be explicit Dev Obs foci.</span></div><div class="lever-when">Windows 1, 2, and 3 throughout year</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--tl)">💬</div><div class="lever-content"><strong>1:1 Coaching with Digital Pedagogy Coach</strong><span>Graeme Wright provides individual coaching and mentoring to support improvement of Digital TLA practice. Stage 1 staff benefit most from targeted coaching conversations focused on building tool confidence and establishing digital habits. The Jisc Discovery Tool profile is the starting point.</span></div><div class="lever-when">On referral or self-referral throughout year</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--tl)">📚</div><div class="lever-content"><strong>Individual CPD — Jisc BDC and ETF DTPF modules</strong><span>Jisc Building Digital Capability self-assessment and recommended learning pathways (jisc.potential.ly/signin). ETF DTPF Exploring stage modules are the primary digital routes at this stage — free for all FE staff via etfoundation.co.uk/professional-development. All CPD recorded on iTrent.</span></div><div class="lever-when">Throughout year at own pace</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--tl)">🎪</div><div class="lever-content"><strong>Teach-Meet</strong><span>Several Teach-Meet style sessions arranged to support group and team training. Focus areas can include: Teams Environments; Accessibility; Digital Inclusion; AI; Digital TLA. The Digital Pedagogy Coach can present, model, or co-facilitate.</span></div><div class="lever-when">Several themed sessions per term</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--tl)">📋</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">New Staff Induction (NSI) and Extended NSI</strong><span contenteditable="true" class="lever-edit">The four-day academic staff induction includes a dedicated Digital TLA session. The Extended NSI on Wednesdays in Term 1 includes additional Digital TLA sessions. The induction timetable includes digital orientation tasks (SharePoint, Teams, SMART Board, Microsoft Forms) as a standard starting point.</span></div><div class="lever-when">Monthly throughout year; Aug–Sept cohorts largest</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--tl)">🎯</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">COGs — Digital Pedagogy</strong><span contenteditable="true" class="lever-edit">Four times a year, staff upskill in different elements of Digital Pedagogy. The four focus areas: Digital Learning Environments; Accessibility and Inclusion; Digital TLA; Using AI to support learning; 21st Century Learning Design.</span></div><div class="lever-when">Four times per year</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--tl)">👁</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Developmental Observations</strong><span contenteditable="true" class="lever-edit">New staff receive a developmental observation in addition to any learning walk. The observation focuses on the quality of TLA, including the environment and resources available online. Digital Accessibility, Environments, and Inclusion can be explicit Dev Obs foci.</span></div><div class="lever-when">Windows 1, 2, and 3 throughout year</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--tl)">💬</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">1:1 Coaching with Digital Pedagogy Coach</strong><span contenteditable="true" class="lever-edit">Graeme Wright provides individual coaching and mentoring to support improvement of Digital TLA practice. Stage 1 staff benefit most from targeted coaching conversations focused on building tool confidence and establishing digital habits. The Jisc Discovery Tool profile is the starting point.</span></div><div class="lever-when">On referral or self-referral throughout year</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--tl)">📚</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Individual CPD — Jisc BDC and ETF DTPF modules</strong><span contenteditable="true" class="lever-edit">Jisc Building Digital Capability self-assessment and recommended learning pathways (jisc.potential.ly/signin). ETF DTPF Exploring stage modules are the primary digital routes at this stage — free for all FE staff via etfoundation.co.uk/professional-development. All CPD recorded on iTrent.</span></div><div class="lever-when">Throughout year at own pace</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--tl)">🎪</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Teach-Meet</strong><span contenteditable="true" class="lever-edit">Several Teach-Meet style sessions arranged to support group and team training. Focus areas can include: Teams Environments; Accessibility; Digital Inclusion; AI; Digital TLA. The Digital Pedagogy Coach can present, model, or co-facilitate.</span></div><div class="lever-when">Several themed sessions per term</div></div>
 </div>
 
 <h2>CPD Levers — Stage 2A: Developing</h2>
 <div class="lever-list">
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">📅</div><div class="lever-content"><strong>Half-termly Teach Meets (Section and Area Level)</strong><span>The primary half-termly CPD mechanism at area level. QIP Tab 2 explicitly links CPD and Teach Meet activity to QIP priorities and impact on TLA. Digital topics can be foregrounded here. The Digital Pedagogy Coach can present, model, or co-facilitate.</span></div><div class="lever-when">Half-termly, each curriculum area</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">🔍</div><div class="lever-content"><strong>Learning Walks and Developmental Observations</strong><span>At Stage 2A, the Learning Walk focuses on whether digital tools are purposefully changing the learning experience. Are Assignments being used with rubrics? Is the Teams environment well structured? Is there evidence of accessible resources?</span></div><div class="lever-when">Three windows: Sept–Nov; Jan–Mar; Apr–Jun</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">🤝</div><div class="lever-content"><strong>Peer Reviews</strong><span>Staff at Stage 2A benefit from reviewing peers who are stronger at digital TLA, and from being reviewed by Stage 1 colleagues. Reviews can focus on Teams environment quality, formative digital assessment, and inclusive tool use. All staff complete at least one peer review per year outside their own area.</span></div><div class="lever-when">Throughout year; captured in CQRP windows</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">🤖</div><div class="lever-content"><strong>Jisc AI Literacy Module 1 — prerequisite for AI tool use</strong><span>Free via Jisc institutional access. Covers what AI tools are, how they work, ethical use, and the limitations staff need to understand before advising learners. Must be completed before using Copilot or any AI tool in a teaching context. Access: jisc.ac.uk/training/understand-ai-basics-for-teaching-and-learning</span></div><div class="lever-when">Self-paced; complete before any AI tool adoption</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">📊</div><div class="lever-content"><strong>Jisc BDC Self-Assessment — mid-year review</strong><span>The Jisc Discovery Tool for staff provides a personal digital capability profile across six dimensions. At Stage 2A, staff revisit their profile to see progress and identify the next development priorities. Results shared with TLAM or Digital Pedagogy Coach in a coaching conversation.</span></div><div class="lever-when">On enrolment and annually; mid-year review</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">🏛</div><div class="lever-content"><strong>Curriculum Quality Review Panels (CQRPs)</strong><span>CQRPs include a TLA Overview covering Self, Peer, and QRA evidence. Digital TLA development is increasingly visible in this evidence. TLAMs can use Digital Health Check data and coaching records as CPD impact measures in these panels.</span></div><div class="lever-when">Twice per year</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">📅</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Half-termly Teach Meets (Section and Area Level)</strong><span contenteditable="true" class="lever-edit">The primary half-termly CPD mechanism at area level. QIP Tab 2 explicitly links CPD and Teach Meet activity to QIP priorities and impact on TLA. Digital topics can be foregrounded here. The Digital Pedagogy Coach can present, model, or co-facilitate.</span></div><div class="lever-when">Half-termly, each curriculum area</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">🔍</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Learning Walks and Developmental Observations</strong><span contenteditable="true" class="lever-edit">At Stage 2A, the Learning Walk focuses on whether digital tools are purposefully changing the learning experience. Are Assignments being used with rubrics? Is the Teams environment well structured? Is there evidence of accessible resources?</span></div><div class="lever-when">Three windows: Sept–Nov; Jan–Mar; Apr–Jun</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">🤝</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Peer Reviews</strong><span contenteditable="true" class="lever-edit">Staff at Stage 2A benefit from reviewing peers who are stronger at digital TLA, and from being reviewed by Stage 1 colleagues. Reviews can focus on Teams environment quality, formative digital assessment, and inclusive tool use. All staff complete at least one peer review per year outside their own area.</span></div><div class="lever-when">Throughout year; captured in CQRP windows</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">🤖</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Jisc AI Literacy Module 1 — prerequisite for AI tool use</strong><span contenteditable="true" class="lever-edit">Free via Jisc institutional access. Covers what AI tools are, how they work, ethical use, and the limitations staff need to understand before advising learners. Must be completed before using Copilot or any AI tool in a teaching context. Access: jisc.ac.uk/training/understand-ai-basics-for-teaching-and-learning</span></div><div class="lever-when">Self-paced; complete before any AI tool adoption</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">📊</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Jisc BDC Self-Assessment — mid-year review</strong><span contenteditable="true" class="lever-edit">The Jisc Discovery Tool for staff provides a personal digital capability profile across six dimensions. At Stage 2A, staff revisit their profile to see progress and identify the next development priorities. Results shared with TLAM or Digital Pedagogy Coach in a coaching conversation.</span></div><div class="lever-when">On enrolment and annually; mid-year review</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">🏛</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Curriculum Quality Review Panels (CQRPs)</strong><span contenteditable="true" class="lever-edit">CQRPs include a TLA Overview covering Self, Peer, and QRA evidence. Digital TLA development is increasingly visible in this evidence. TLAMs can use Digital Health Check data and coaching records as CPD impact measures in these panels.</span></div><div class="lever-when">Twice per year</div></div>
 </div>
 
 <h2>CPD Levers — Stage 2B and Stage 3</h2>
 <div class="lever-list">
-<div class="lever"><div class="lever-dot" style="background:var(--pl)">⭐</div><div class="lever-content"><strong>Digital Lead Induction</strong><span>Staff confirmed as Digital Leads receive a structured induction covering the Digital Health Check process, EDS mapping, and their role in supporting colleagues. The Digital Lead role sits at Stage 2B and moves towards Stage 3.</span></div><div class="lever-when">On confirmation as Digital Lead; ongoing coaching support</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--pl)">🔎</div><div class="lever-content"><strong>Quality Review Activity (QRA)</strong><span>At Stage 2B, staff should be able to demonstrate accessible resources, a well-structured Teams environment, and learner evidence of digital skills development during a QRA. The Digital Pedagogy Coach can provide coaching in preparation.</span></div><div class="lever-when">At-risk or volume basis; one week's notice given</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--pl)">📈</div><div class="lever-content"><strong>Programme Performance Reviews (PPRs)</strong><span>Learner digital skills progression, Jisc Discovery Tool pre and post data, Teams Assignment analytics, and Century diagnostic data all become PPR evidence at Stage 2B. The Digital Pedagogy Coach provides data in advance where possible.</span></div><div class="lever-when">Three times per year</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--pl)">🏆</div><div class="lever-content"><strong>Academic and Staff Conferences (Collegiate Level)</strong><span>Stage 3 staff present, facilitate, or co-design digital sessions at the Academic Conference (20 September) and Staff Conference (5 January). The Transformational CPD category explicitly references digital innovation in curriculum as a focus.</span></div><div class="lever-when">Academic Conference 20 Sept; Staff Conference 5 Jan</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--pl)">🗓</div><div class="lever-content"><strong>INSET Days (Cross-College)</strong><span>Three INSET days provide whole-college CPD opportunities. Stage 3 staff can lead digital sessions, showcase innovation, and build colleagues' capacity. The Digital Pedagogy Coach co-designs INSET digital content. INSET dates: WC 20 October; FE and HE INSET 2 April.</span></div><div class="lever-when">Three INSET days per year</div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--pl)">🌐</div><div class="lever-content"><strong>Industry Updating and Professional Collaboration</strong><span>Stage 3 staff maintain awareness of sector-level digital innovation through Jisc DigiFest (annual, typically March), ETF conferences, and external CPD. The Professional Collaboration category includes contributing to national networks and Jisc communities. Both are Quality Handbook requirements — not extras.</span></div><div class="lever-when">Throughout year; minimum in Quality Handbook</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--pl)">⭐</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Digital Lead Induction</strong><span contenteditable="true" class="lever-edit">Staff confirmed as Digital Leads receive a structured induction covering the Digital Health Check process, EDS mapping, and their role in supporting colleagues. The Digital Lead role sits at Stage 2B and moves towards Stage 3.</span></div><div class="lever-when">On confirmation as Digital Lead; ongoing coaching support</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--pl)">🔎</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Quality Review Activity (QRA)</strong><span contenteditable="true" class="lever-edit">At Stage 2B, staff should be able to demonstrate accessible resources, a well-structured Teams environment, and learner evidence of digital skills development during a QRA. The Digital Pedagogy Coach can provide coaching in preparation.</span></div><div class="lever-when">At-risk or volume basis; one week's notice given</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--pl)">📈</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Programme Performance Reviews (PPRs)</strong><span contenteditable="true" class="lever-edit">Learner digital skills progression, Jisc Discovery Tool pre and post data, Teams Assignment analytics, and Century diagnostic data all become PPR evidence at Stage 2B. The Digital Pedagogy Coach provides data in advance where possible.</span></div><div class="lever-when">Three times per year</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--pl)">🏆</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Academic and Staff Conferences (Collegiate Level)</strong><span contenteditable="true" class="lever-edit">Stage 3 staff present, facilitate, or co-design digital sessions at the Academic Conference (20 September) and Staff Conference (5 January). The Transformational CPD category explicitly references digital innovation in curriculum as a focus.</span></div><div class="lever-when">Academic Conference 20 Sept; Staff Conference 5 Jan</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--pl)">🗓</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">INSET Days (Cross-College)</strong><span contenteditable="true" class="lever-edit">Three INSET days provide whole-college CPD opportunities. Stage 3 staff can lead digital sessions, showcase innovation, and build colleagues' capacity. The Digital Pedagogy Coach co-designs INSET digital content. INSET dates: WC 20 October; FE and HE INSET 2 April.</span></div><div class="lever-when">Three INSET days per year</div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--pl)">🌐</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Industry Updating and Professional Collaboration</strong><span contenteditable="true" class="lever-edit">Stage 3 staff maintain awareness of sector-level digital innovation through Jisc DigiFest (annual, typically March), ETF conferences, and external CPD. The Professional Collaboration category includes contributing to national networks and Jisc communities. Both are Quality Handbook requirements — not extras.</span></div><div class="lever-when">Throughout year; minimum in Quality Handbook</div></div>
 </div>
 
 <h2>The Assessment Tools that underpin all CPD conversations</h2>
@@ -845,7 +928,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 </div>
 
 </div>
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality</span><span>Section 4 of 6 · WCAG 2.2 AA</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 4 · WCAG 2.2 AA</span></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ PAGE 5: LEARNING WITHOUT BARRIERS -->
@@ -860,9 +943,18 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 <div class="lwb-banner">
 <div class="lwb-banner-icon">♾</div>
 <div>
-<h4>The Learning Without Barriers principle</h4>
-<p>Accessibility is not a bolt-on for certain learners. It is the professional standard for every digital resource, every digital environment, and every digital interaction. WCAG 2.2 AA is the floor — not the ceiling. Every teacher, at every stage, is responsible for this. The only thing that changes as you move up the Pyramid is the depth of your contribution: from using tools, to teaching with them, to advocating for them institutionally.</p>
+<h4>Learning Without Barriers — the proposal and direction of travel</h4>
+<p>Learning Without Barriers is not an accessibility policy. It is a college-wide commitment that no learner is excluded from learning by their access to — or confidence with — technology. It runs through every level of the Digital Learning Pyramid: at Foundation level, every learner knows Immersive Reader exists; at Inclusion level, AT is offered proactively to all; at Innovation level, staff champion WCAG 2.2 AA and AT investment as institutional standards. This is the lens through which every digital decision should be made.</p>
 </div>
+</div>
+
+<div class="three" style="margin:24px 0">
+<div class="co"><p class="co-t">What Learning Without Barriers means in practice</p>
+<p>Every digital resource passes the Accessibility Checker before it is shared. Every new teacher demonstrates Immersive Reader to their class at induction — to all learners, not only those with a recorded need. Every Teams session has Live Captions available. Every area has a named Digital Lead who can advise on AT. Accessibility is <em>designed in</em>, not bolted on after the fact.</p></div>
+<div class="co a"><p class="co-t">The strategic context</p>
+<p>The renewed Ofsted EIF (November 2025) grades Inclusion as a standalone report card area for the first time. The DfE mandated AT training for all new teachers from September 2025. The Digital Inclusion Action Plan (February 2025) positions colleges as local delivery partners. Learning Without Barriers is how Weston College responds to all three — in the classroom, not just in policy.</p></div>
+<div class="co g"><p class="co-t">The three levels of contribution</p>
+<p><strong>Foundations:</strong> Use accessible tools, run the Accessibility Checker, demonstrate Immersive Reader.<br><strong>Inclusion:</strong> Offer AT proactively; design inclusive digital environments; adapt for ESOL, SEND, and disadvantaged learners.<br><strong>Innovation:</strong> Advocate for AT investment; champion WCAG 2.2 AA institutionally; lead colleagues; shape college policy.</p></div>
 </div>
 
 <h2>WCAG 2.2 AA — the standard we work to</h2>
@@ -872,33 +964,35 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 <div class="two">
 <div><h3>What the Accessibility Checker does automatically</h3>
 <div class="lever-list">
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong>Missing alt text</strong><span>Flags any image without an alt text description. Two sentences maximum — descriptive, not decorative.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong>Heading structure</strong><span>Checks that headings use built-in styles (Heading 1, 2, 3) not just bold text.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong>Colour contrast</strong><span>Flags text that does not meet the 4.5:1 minimum contrast ratio.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong>Table structure</strong><span>Checks that tables have header rows and are not used for layout purposes.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong>Links</strong><span>Flags non-descriptive link text (e.g. "click here") — all links should describe their destination.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Missing alt text</strong><span contenteditable="true" class="lever-edit">Flags any image without an alt text description. Two sentences maximum — descriptive, not decorative.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Heading structure</strong><span contenteditable="true" class="lever-edit">Checks that headings use built-in styles (Heading 1, 2, 3) not just bold text.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Colour contrast</strong><span contenteditable="true" class="lever-edit">Flags text that does not meet the 4.5:1 minimum contrast ratio.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Table structure</strong><span contenteditable="true" class="lever-edit">Checks that tables have header rows and are not used for layout purposes.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--gl)">✓</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Links</strong><span contenteditable="true" class="lever-edit">Flags non-descriptive link text (e.g. "click here") — all links should describe their destination.</span></div></div>
 </div></div>
 <div><h3>What you must add manually</h3>
 <div class="lever-list">
-<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong>Captions on video</strong><span>Auto-captions in Teams and Stream must be reviewed and corrected — they are 80–90% accurate and need checking for specialist terminology.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong>Reading order</strong><span>In complex layouts, check that a screen reader will read content in a logical order.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong>Meaningful file names</strong><span>"Week 3 — Photosynthesis Notes" not "Document1." Learners using screen readers navigate by file name.</span></div></div>
-<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong>Plain language</strong><span>Short sentences, active voice, no unexplained jargon. Benefits every learner, not just those with literacy needs.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Captions on video</strong><span contenteditable="true" class="lever-edit">Auto-captions in Teams and Stream must be reviewed and corrected — they are 80–90% accurate and need checking for specialist terminology.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Reading order</strong><span contenteditable="true" class="lever-edit">In complex layouts, check that a screen reader will read content in a logical order.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Meaningful file names</strong><span contenteditable="true" class="lever-edit">"Week 3 — Photosynthesis Notes" not "Document1." Learners using screen readers navigate by file name.</span></div></div>
+<div class="lever"><div class="lever-dot" style="background:var(--al)">!</div><div class="lever-content"><strong contenteditable="true" class="lever-edit">Plain language</strong><span contenteditable="true" class="lever-edit">Short sentences, active voice, no unexplained jargon. Benefits every learner, not just those with literacy needs.</span></div></div>
 </div></div>
 </div>
 
 <h2>Learner groups — key digital considerations</h2>
-<div class="tw"><table>
-<thead><tr><th>Learner Group</th><th>Key Considerations</th><th>Tools and Approaches</th></tr></thead>
+<div class="et-wrap" id="et-lwb-learners">
+<div class="et-toolbar"><span class="et-label">Editable table</span><button class="et-btn" onclick="etAddRow('et-lwb-learners')">+ Row</button><button class="et-btn" onclick="etAddCol('et-lwb-learners')">+ Column</button></div>
+<div class="tw"><table id="tbl-lwb-learners">
+<thead><tr><th contenteditable="true" class="et-th">Learner Group</th><th contenteditable="true" class="et-th">Key Considerations</th><th contenteditable="true" class="et-th">Tools and Approaches</th><th class="et-del-col-head"><button class="et-del-btn et-del-col" onclick="etDelCol('et-lwb-learners',this)" title="Delete last column">−col</button></th></tr></thead>
 <tbody>
-<tr><td><strong>FIP Autism (FAU)</strong></td><td>Many autistic learners have strong digital aptitude — recognise and build on this in ILPs. Predictable, consistent digital environments reduce anxiety significantly. Sudden platform changes without notice must be avoided.</td><td>Proloquo2Go and Grid 3 for AAC; Choiceworks for visual schedules; consistent Teams layout and file naming conventions; sensory settings adjusted</td></tr>
-<tr><td><strong>FIP Complex Needs (FCO)</strong></td><td>For this cohort, technology is often the primary means of communication and participation. Device and software reliability is a safeguarding issue — not a convenience issue. Staff AT training is mandatory, not optional CPD.</td><td>Tobii eye-gaze; switch-access devices; Clicker and Widgit Online; interactive digital surfaces. All college devices must have this software available and functioning.</td></tr>
-<tr><td><strong>FIP Pre-Vocational (FPL)</strong></td><td>Basic device operation as a foundation for transition to employment. Digital daily living tools support independence in ways with direct quality-of-life implications.</td><td>Read &amp; Write for text-to-speech and dictation; Immersive Reader (free, built in — show to every learner); Clicker 8; visual timetable apps for routine and structure</td></tr>
-<tr><td><strong>ESOL Learners (ESO)</strong></td><td>Language exclusion and digital exclusion are compounding barriers that must be addressed together. Microsoft Translator and Google Translate are scaffolding tools that bridge to independence — not permanent dependency supports.</td><td>Microsoft Translator and Google Translate as standard scaffolding; Immersive Reader with translation enabled; real-world digital tasks (NHS App, DWP portal, online banking) as the most motivating and immediately useful contexts</td></tr>
-<tr><td><strong>Dyslexia and SpLD (All Areas)</strong></td><td>Read &amp; Write Gold, Immersive Reader, OneNote digital inking for spatial note-taking, and Dragon Dictate for extended writing. These are productivity tools that happen to be especially effective for learners with literacy difficulties — available to everyone.</td><td>Read &amp; Write Gold; Immersive Reader (zero cost, high impact, built into all Office apps); OneNote digital inking; Dragon Dictate or Windows Speech Recognition; mention all of these at induction as available to all</td></tr>
-<tr><td><strong>Universal Design (All Areas)</strong></td><td>WCAG 2.2 AA compliance for all digital resources created by staff. Captions on all video. Alt-text on all images. Accessible colour contrast. Accessibility Checker run before every resource is shared. This applies to every learner in every room.</td><td><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener">WCAG 2.2 Quick Reference</a> · <a href="https://support.microsoft.com/en-us/office/make-your-content-accessible-to-everyone-with-the-accessibility-checker-38059c2d-45ef-4830-9797-618f0e96f3ab" target="_blank" rel="noopener">Microsoft Accessibility Checker</a></td></tr>
+<tr><td contenteditable="true"><strong>FIP Autism (FAU)</strong></td><td contenteditable="true">Many autistic learners have strong digital aptitude — recognise and build on this in ILPs. Predictable, consistent digital environments reduce anxiety significantly. Sudden platform changes without notice must be avoided.</td><td contenteditable="true">Proloquo2Go and Grid 3 for AAC; Choiceworks for visual schedules; consistent Teams layout and file naming conventions; sensory settings adjusted</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><strong>FIP Complex Needs (FCO)</strong></td><td contenteditable="true">For this cohort, technology is often the primary means of communication and participation. Device and software reliability is a safeguarding issue — not a convenience issue. Staff AT training is mandatory, not optional CPD.</td><td contenteditable="true">Tobii eye-gaze; switch-access devices; Clicker and Widgit Online; interactive digital surfaces. All college devices must have this software available and functioning.</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><strong>FIP Pre-Vocational (FPL)</strong></td><td contenteditable="true">Basic device operation as a foundation for transition to employment. Digital daily living tools support independence in ways with direct quality-of-life implications.</td><td contenteditable="true">Read &amp; Write for text-to-speech and dictation; Immersive Reader (free, built in — show to every learner); Clicker 8; visual timetable apps for routine and structure</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><strong>ESOL Learners (ESO)</strong></td><td contenteditable="true">Language exclusion and digital exclusion are compounding barriers that must be addressed together. Microsoft Translator and Google Translate are scaffolding tools that bridge to independence — not permanent dependency supports.</td><td contenteditable="true">Microsoft Translator and Google Translate as standard scaffolding; Immersive Reader with translation enabled; real-world digital tasks (NHS App, DWP portal, online banking) as the most motivating and immediately useful contexts</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><strong>Dyslexia and SpLD (All Areas)</strong></td><td contenteditable="true">Read &amp; Write Gold, Immersive Reader, OneNote digital inking for spatial note-taking, and Dragon Dictate for extended writing. These are productivity tools that happen to be especially effective for learners with literacy difficulties — available to everyone.</td><td contenteditable="true">Read &amp; Write Gold; Immersive Reader (zero cost, high impact, built into all Office apps); OneNote digital inking; Dragon Dictate or Windows Speech Recognition; mention all of these at induction as available to all</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
+<tr><td contenteditable="true"><strong>Universal Design (All Areas)</strong></td><td contenteditable="true">WCAG 2.2 AA compliance for all digital resources. Captions on all video. Alt-text on all images. Accessible colour contrast. Accessibility Checker run before every resource is shared.</td><td contenteditable="true">WCAG 2.2 Quick Reference: w3.org/WAI/WCAG22/quickref/ · Microsoft Accessibility Checker: built into all Office apps</td><td class="et-del-col"><button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button></td></tr>
 </tbody>
-</table></div>
+</table></div></div>
 
 <h2>Assistive Technology — what we have and what every teacher should know</h2>
 <div class="tool-grid">
@@ -916,7 +1010,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 <p>The Education Endowment Foundation found that when used effectively, digital technology can accelerate learning by two to three months. The key qualifier is <em>when used effectively</em>. Technical provision alone does not deliver the attainment gains. Pedagogical coaching — showing staff how to use these tools purposefully for learning — is what bridges the gap between available and effective.</p></div>
 
 </div>
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality</span><span>Section 5 of 6 · WCAG 2.2 AA</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 5 · WCAG 2.2 AA</span></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ PAGE 6: FRAMEWORKS & GLOSSARY -->
@@ -1067,7 +1161,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 </div>
 
 </div>
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality · WCAG 2.2 AA Compliant</span><span>Section 6 of 6</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 6 · WCAG 2.2 AA</span></div>
 </div>
 <!-- ═══════════════════════════════════════════════ PAGE 7: ACTION PLAN & ACCOUNTABILITY -->
 <div class="page" id="p7">
@@ -1194,7 +1288,7 @@ tbody td{padding:12px 14px;vertical-align:top;border-bottom:1px solid var(--rule
 </div>
 
 </div><!-- end pb -->
-<div class="pfoot"><span><strong>Weston College · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright, Digital Pedagogy Coach · Quality · WCAG 2.2 AA Compliant</span><span>Section 7 of 7</span></div>
+<div class="pfoot"><span><strong>WC · Digital Pedagogy Toolkit 2026–27</strong> · Graeme Wright · Digital Pedagogy Coach</span><span>Section 7 · WCAG 2.2 AA</span></div>
 </div><!-- end page 7 -->
 
 </main>
@@ -1234,204 +1328,25 @@ document.querySelectorAll('.cpl[tabindex]').forEach(el => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// DATA SCHEMA — single source of truth
-// All editable data lives here. UI reads from and writes to this object.
-// JSON output mirrors this structure exactly.
+// STAGE CARD — EXPANDABLE ITEMS
 // ═══════════════════════════════════════════════════════════════════
-
-const SCHEMA_VERSION = "1.0";
-const AUTHOR = "Graeme Wright";
-const COLLEGE = "Weston College Group";
-
-// Responsibility definitions — static metadata, not user-editable
-const RESPONSIBILITIES = [
-  { id: 1, phase: 1, title: "Map digital and subject-specific skills with HoAs, TLAMs and coaches",
-    color: "#0A7EA4", kpiDefault: "Teaching Quality Indicators · QIP Traction · Value for Money",
-    fields: ["rag","done","next","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: {
-      rag: "e.g. Amber — 12 of 20 HoA conversations complete",
-      done: "Record completed activities",
-      next: "What needs to happen before end of June",
-      milestone: "Define what completion looks like",
-      kpi: "Which Appendix D KPI area does this feed?"
-    }
-  },
-  { id: 2, phase: 1, title: "Teams environment audit with HoA and Digital Leads, follow-up training",
-    color: "#0A7EA4", kpiDefault: "Teaching Quality Indicators · Staff Capability",
-    fields: ["rag","done","next","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which KPI?" }
-  },
-  { id: 3, phase: 1, title: "Clarify Digital Leads vs Digital Champions — engage both structures",
-    color: "#10B981", kpiDefault: "Digital Champions · Staff Capability · Teaching Quality Indicators",
-    fields: ["rag","done","next","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which KPI?" }
-  },
-  { id: 4, phase: 1, title: "Design, set up and deliver accessibility by design workshops — iTrent, termly, NSI",
-    color: "#10B981", kpiDefault: "Staff Capability · Staff Confidence · Teaching Quality Indicators",
-    fields: ["rag","done","next","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which KPI?" }
-  },
-  { id: 8, phase: 1, title: "Coaching for AI support and training",
-    color: "#B45309", kpiDefault: "Staff Capability · Staff Confidence · Teaching Quality Indicators",
-    fields: ["rag","done","next","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities (AI training already substantially delivered)", next:"Next: compile training log; draft college AI position statement", milestone:"Define what completion looks like", kpi:"Which KPI?" }
-  },
-  { id: 10, phase: 1, title: "External networks, horizon scanning — BETT, Digifest, sector events",
-    color: "#B45309", kpiDefault: "Value for Money · Staff Capability · Professional Collaboration",
-    fields: ["rag","done","next","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"Populate 2026/27 events calendar; block time now", milestone:"Define what completion looks like", kpi:"Which KPI?" }
-  },
-  { id: 5, phase: 2, title: "Create accessibility support videos for Digital Foundations on SharePoint",
-    color: "#5B21B6", kpiDefault: "Staff Capability · Value for Money",
-    fields: ["rag","plan","milestone","kpi"],
-    labels: { rag:"Status / RAG", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"Red — not yet started. Scheduled for summer", plan:"5 short screen-recorded videos (Accessibility Checker; alt text; heading styles; captions; links). Published to SharePoint by end of July.", milestone:"5 videos live on SharePoint by end of July", kpi:"Which KPI?" }
-  },
-  { id: 6, phase: 2, title: "IT roadmap and next steps — Learning Without Barriers for ESOL and SEND",
-    color: "#5B21B6", kpiDefault: "Teaching Quality Indicators · Student Experience · Value for Money",
-    fields: ["rag","done","plan","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", plan:"AT licence audit. Joint meeting with IT and SEND team in July. One-page roadmap by end of August.", milestone:"AT audit complete; IT meeting held; roadmap shared with quality leadership by end of August", kpi:"Which KPI?" }
-  },
-  { id: 7, phase: 2, title: "Videos and resources for Assistive Technology support",
-    color: "#5B21B6", kpiDefault: "Student Experience · Staff Capability · Teaching Quality Indicators",
-    fields: ["rag","plan","milestone","kpi"],
-    labels: { rag:"Status / RAG", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"Red — not yet started. Depends partly on AT licence audit (activity 6)", plan:"3 core AT videos: Immersive Reader; Live Captions; Read & Write Gold. Published to SharePoint AT section by end of July.", milestone:"3 AT videos live and distributed to targeted TLAMs in September", kpi:"Which KPI?" }
-  },
-  { id: 9, phase: 2, title: "Lead digital skills training — Jisc, ETF, curated sources, Century for learners",
-    color: "#5B21B6", kpiDefault: "Staff Capability · Student Experience · Teaching Quality Indicators",
-    fields: ["rag","done","plan","milestone","kpi"],
-    labels: { rag:"Status / RAG", done:"What is done", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
-    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", plan:"Jisc Discovery Tool institutional setup by August. TLAM guide written. Century EDS diagnostics in 2026/27 learner induction.", milestone:"Jisc Discovery Tool ready for September; TLAM guide published week 1; Century plan confirmed", kpi:"Which KPI?" }
+function toggleSCItem(li) {
+  // Wrap plain children into head div if not already done
+  if (!li.querySelector('.sc-item-head')) {
+    const arrow = li.querySelector('.sc-arrow');
+    const text = li.querySelector('.sc-text');
+    const detail = li.querySelector('.sc-detail');
+    const head = document.createElement('div');
+    head.className = 'sc-item-head';
+    if (arrow) head.appendChild(arrow);
+    if (text) head.appendChild(text);
+    li.insertBefore(head, detail);
   }
-];
-
-// Default data values — pre-populated with current state
-const DEFAULT_DATA = {
-  meta: {
-    schemaVersion: "1.0",
-    author: "Graeme Wright",
-    role: "Digital Pedagogy Coach",
-    college: "Weston College Group",
-    pilotStart: "2026-01-01",
-    pilotEnd: "2027-07-31",
-    reviewDates: { threeMonth: "2026-10-01", nineMonth: "2027-04-01", eighteenMonth: "2027-07-01" },
-    compliance: {
-      dataStorage: "Microsoft OneDrive — Weston College Microsoft 365 tenant",
-      iso27001: "Data stored within Microsoft 365 tenant. Microsoft holds ISO/IEC 27001:2022 certification (cert no. IS 533913). OneDrive provides encryption at rest (AES-256), encryption in transit (TLS 1.2+), access control via college AAD, and automated backup.",
-      iso9001: "Each saved JSON file constitutes a dated quality record. The built-in changeLog array provides an audit trail of every save event with timestamp, author, and RAG summary. Files are retained in OneDrive version history for the duration of the pilot and beyond.",
-      cyberEssentials: "Data does not leave the Microsoft 365 boundary. No third-party services, no cloud APIs, no external data transfer. The toolkit is a self-contained HTML file with no network requests.",
-      gdpr: "This file contains professional activity records only — no learner personal data, no staff sensitive personal data. Data controller: Weston College Group. Processed under legitimate interests (quality assurance and professional development).",
-      retentionPolicy: "Retain all JSON versions for the 18-month pilot period (to July 2027) plus 3 years for quality audit purposes. Review and dispose in line with Weston College Group data retention schedule.",
-      accessControl: "File stored in owner's OneDrive. Access restricted to file owner and nominated quality team leads as required. Sharing via OneDrive secure link only — not email attachment.",
-      statementGeneratedAt: "2026-04-06"
-    }
-  },
-  responsibilities: {
-    1: { rag: "Amber — HoA meetings started in February. Approximately 12 conversations complete. Mapping summary not yet compiled.", done: "First contact with all priority areas. Learning Without Barriers and digital inclusion sessions delivered with Emily Green's Quality Team. Digital hours conversations started with HoAs via meetings booked through Cass.", next: "Complete remaining 8 HoA conversations by end of May. Write one-page mapping summary — what areas are doing, where the gaps are, what to celebrate — and share with Neil Davies by end of May. Present mapping picture at a CQRP or TLAM group in June.", milestone: "20 HoA conversations logged. One-page summary shared with quality leadership. Mapping referenced in at least one QIP for 2026/27 planning.", kpi: "Teaching Quality Indicators · QIP Traction · Value for Money" },
-    2: { rag: "Red — Digital Health Check template not yet designed. No formal audits completed. Digital Leads not yet formally in place.", done: "Informal Teams environment coaching provided to Healthcare, Engineering, and ESOL areas. Accessibility concerns identified and addressed in individual coaching sessions.", next: "Design Teams Digital Health Check template — 10 items, traffic-light rated, as a Microsoft Form. Run pilot audits with 3–4 areas before end of May. Document before/after evidence.", milestone: "Health Check template live as a Form by end of April. 5 area audits completed by end of May. Follow-up coaching booked within 2 weeks of any gap identified.", kpi: "Teaching Quality Indicators · Staff Capability" },
-    3: { rag: "Amber — Digital Champions programme running. Digital Leads role not yet formally defined or communicated to TLAMs.", done: "Digital Champions network active. Individual meetings held with Champions. Teams community created for collaboration. DigiWest engagement sustained.", next: "Write one-page Digital Lead role description by end of April. Share with TLAMs for input. Identify named Digital Leads through TLAM conversations. Plan Digital Champions 2026/27.", milestone: "Digital Lead one-pager agreed with TLAMs by end of May. Named Digital Lead in every area by end of June. Digital Champions 2026/27 structure documented and ready for September.", kpi: "Digital Champions · Staff Capability · Teaching Quality Indicators" },
-    4: { rag: "Amber — Accessibility content developed and used in coaching. No formal iTrent workshop booked yet. NSI integration not yet confirmed.", done: "Accessibility Checker coaching delivered to multiple areas. WCAG 2.2 AA content embedded in Learning Without Barriers work with Quality Team. Accessibility sessions in Extended NSI Term 1.", next: "Design 60-minute Accessibility by Design workshop. Book on iTrent for May or early June — target 20+ attendees. Email NSI coordinator with proposal for August cohort integration. Confirm termly slots for 2026/27.", milestone: "First iTrent session delivered by end of June. NSI slot confirmed for August 2026. Three termly sessions booked for 2026/27 before end of term.", kpi: "Staff Capability · Staff Confidence · Teaching Quality Indicators" },
-    5: { rag: "Red — not yet started. Scheduled for summer.", plan: "Record 5 short screen-recorded videos (under 5 minutes each): Accessibility Checker; alt text; heading styles; enabling captions; accessible links. Published to SharePoint 'Accessibility by Design — Quick Guides' by end of July. One new video per term from September.", milestone: "5 videos live on SharePoint by end of July. SharePoint link shared with all TLAMs in September.", kpi: "Staff Capability · Value for Money" },
-    6: { rag: "Amber — relationship with Liz Burkley and Lois Knight established. AT licence situation not yet fully audited. IT conversation not yet had.", done: "Collaborative work with Learning Support (Katie Middleton) on ESOL digital access. SEND SharePoint built with Learning Support. Relationship with Liz Burkley and Lois Knight established.", plan: "Audit AT licence status (Read and Write Gold, Tobii, Proloquo2Go, Clicker). Hold joint meeting with IT and SEND team in July with specific list of 5–6 asks. Write one-page roadmap and share with Neil Davies in August.", milestone: "AT licence audit completed by end of July. Joint IT/SEND meeting held by end of July. One-page roadmap shared with quality leadership by end of August.", kpi: "Teaching Quality Indicators · Student Experience · Value for Money" },
-    7: { rag: "Red — not yet started. Depends partly on AT licence audit (activity 6).", plan: "Record 3 core AT videos: Immersive Reader (how and why to show every learner at induction); Live Captions in Teams (enable as default); Read and Write Gold (staff guide). Published to 'Assistive Technology for Staff' SharePoint section. Distributed specifically to ESOL, Learning Support, FIP, and HAC TLAMs.", milestone: "3 AT videos live on SharePoint by end of July. Distributed to targeted TLAMs in September.", kpi: "Student Experience · Staff Capability · Teaching Quality Indicators" },
-    8: { rag: "Green — substantial AI training and coaching already delivered. Needs systematising into a repeatable offer and embedding in COGs.", done: "AI training delivered to Sixth Form, Maths, Healthcare, Engineering, ESOL, Learning Support, PLS teams. DigiWest PLS AI day delivered. Senior leader Copilot coaching completed. FE/HE AI distinction navigated with multiple areas.", next: "Compile AI training log — areas, staff numbers, content covered, one testimonial per area. Draft college AI position statement for staff (three sentences) — share with Neil Davies for sign-off.", milestone: "AI training log compiled and shared with quality leadership by end of May. College AI position statement agreed by end of June. AI content confirmed as COG theme for 2026/27.", kpi: "Staff Capability · Staff Confidence · Teaching Quality Indicators" },
-    9: { rag: "Amber — ETF DTPF and Jisc framework embedded in TDS document and toolkit. Jisc Discovery Tool not yet deployed institutionally. Century not yet in learner induction plan.", done: "ETF DTPF stages embedded in Teacher Digital Skills document. Jisc BDC framework incorporated into all coaching conversations. Learning pathways written and verified. Jisc AI Literacy modules referenced as prerequisite for AI tool use.", plan: "Confirm Jisc Discovery Tool institutional setup. Run pilot with 5–8 staff before September. Map Century Tech diagnostics into 2026/27 learner induction plan. Write one-page TLAM guide: 'Digital Skills Assessment — What to Do in September.'", milestone: "Jisc Discovery Tool ready for September deployment by end of August. TLAM guide published in first week of September. Century induction plan confirmed with HoAs by end of June.", kpi: "Staff Capability · Student Experience · Teaching Quality Indicators" },
-    10: { rag: "Amber — DigiWest counts as internal-facing external engagement. No formal events calendar for 2026/27 yet set.", done: "Co-organised and delivered DigiWest. Informal engagement with Jisc and ETF resources throughout the year. External-facing consultation documents produced and filed.", next: "Populate 2026/27 external events calendar — BETT (Jan), Digifest (March), ETF/SET conference, Jisc BDC Community of Practice (biannual). Block time now before the year fills up.", milestone: "Events calendar populated by end of April. One external event attended per half-term from September. One-paragraph write-up shared with quality colleagues after each event.", kpi: "Value for Money · Staff Capability · Professional Collaboration (Quality Handbook CPD)" }
-  },
-  freetext: {
-    phase3notes: "Key Phase 3 commitments from the consultation (Appendix D governance):\n— 3-month review: October 2026. Baseline data established. Coaching relationships initiated. Jisc Discovery Tool deployed. First iTrent accessibility session delivered.\n— 9-month review: April 2027. Progress against all 8 KPI areas. Digital Leads in place and Health Checks running. AI training systematised via COGs.\n— 18-month review: July 2027. Comprehensive evidence portfolio. Recommendation on permanent positioning.",
-    coachinglog: "• February–March 2026: Digital inclusion Learning Walks with Emily Green and Quality Team. Multiple areas. QIP actions added as result.\n• October 2025: AI training — Sixth Form, Maths, Engineering, ESOL, Learning Support, PLS teams.\n• Various: Individual coaching — Jenny Gamlin (Healthcare), Claude Ujile (Engineering), Katie Middleton (Learning Support), Kara Weymouth (Healthcare), Jed Randall (Maths), others.\n• DigiWest: co-organised and delivered. Follow-up coaching requests sustained throughout year.",
-    cpdlog: "Add session records here as they are delivered.",
-    testimoniallog: "Emily Green (TLA Manager, Quality Team): \"This has been vital for our work as a Quality Team... many managers have identified this is an area they would like added to their QIP as a result.\" — January 2026\nKara Weymouth (Healthcare): \"What sets Graeme apart is that he understands teaching first.\" — January 2026\nJed Randall (Maths): \"Essential for driving high-quality TLA and promoting digital inclusion across the college.\" — January 2026\nJenny Gamlin (Healthcare): \"Thanks to Graeme I feel confident... his input has led to all of us being less afraid.\" — January 2026",
-    eventslog: "Add external event records here — date, event name, key takeaway, how shared internally."
-  },
-  changeLog: []
-};
-
-// ═══════════════════════════════════════════════════════════════════
-// STATE — live working copy of the data
-// ═══════════════════════════════════════════════════════════════════
-let state = JSON.parse(JSON.stringify(DEFAULT_DATA)); // deep clone defaults
-let isDirty = false;
-let currentFileName = null;
-
-// ═══════════════════════════════════════════════════════════════════
-// BUILD UI FROM SCHEMA
-// ═══════════════════════════════════════════════════════════════════
-function buildUI() {
-  const p1 = document.getElementById('grid-p1');
-  const p2 = document.getElementById('grid-p2');
-  p1.innerHTML = '';
-  p2.innerHTML = '';
-
-  RESPONSIBILITIES.forEach(r => {
-    const grid = r.phase === 1 ? p1 : p2;
-    const data = state.responsibilities[r.id] || {};
-
-    const card = document.createElement('div');
-    card.className = 'resp-card';
-    card.id = 'card-' + r.id;
-
-    const ragVal = (data.rag || '').toLowerCase();
-    let ragColor = '#CBD5E1';
-    if (ragVal.startsWith('green')) ragColor = '#10B981';
-    else if (ragVal.startsWith('amber')) ragColor = '#F59E0B';
-    else if (ragVal.startsWith('red')) ragColor = '#EF4444';
-
-    let fieldsHTML = '';
-    r.fields.forEach(f => {
-      const label = r.labels[f] || f;
-      const val = data[f] || '';
-      const ph = r.placeholders[f] || '';
-      fieldsHTML += `<div class="field-label">${label}</div>
-<div class="editable-field resp-field" 
-     contenteditable="true" 
-     id="r${r.id}-${f}"
-     data-rid="${r.id}" 
-     data-field="${f}"
-     data-placeholder="${ph.replace(/"/g,'&quot;')}">${val ? escapeHtml(val) : ''}</div>`;
-    });
-
-    card.innerHTML = `
-<div class="resp-head" onclick="toggleCard('card-${r.id}')" aria-expanded="false" aria-controls="body-${r.id}">
-  <div class="resp-num" style="background:${r.color}">${r.id}</div>
-  <div class="resp-title">${r.title}</div>
-  <div id="rag-dot-${r.id}" style="width:10px;height:10px;border-radius:50%;background:${ragColor};flex-shrink:0;margin-top:6px"></div>
-  <span class="resp-toggle" aria-hidden="true">▾</span>
-</div>
-<div class="resp-body" id="body-${r.id}" role="region">
-${fieldsHTML}
-</div>`;
-
-    grid.appendChild(card);
-  });
-
-  // Build freetext fields
-  ['phase3notes','coachinglog','cpdlog','testimoniallog','eventslog'].forEach(key => {
-    const el = document.getElementById('field-' + key);
-    if (el) {
-      el.textContent = state.freetext[key] || '';
-    }
-  });
-
-  renderChangeLog();
-  updateRagSummary();
-}
-
-function escapeHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  li.classList.toggle('open');
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// CARD TOGGLE
+// ACTION PLAN — CARD TOGGLES
 // ═══════════════════════════════════════════════════════════════════
 function toggleCard(id) {
   const card = document.getElementById(id);
@@ -1441,33 +1356,295 @@ function toggleCard(id) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// LIVE EDITING — capture edits into state
+// EDITABLE TABLES — add/delete rows and columns
 // ═══════════════════════════════════════════════════════════════════
-document.addEventListener('input', e => {
-  const el = e.target;
+function etAddRow(wrapId) {
+  const tbl = document.querySelector('#' + wrapId + ' table');
+  if (!tbl) return;
+  const headers = tbl.querySelectorAll('thead th');
+  const colCount = headers.length - 1; // -1 for the delete column
+  const tbody = tbl.querySelector('tbody');
+  const tr = document.createElement('tr');
+  for (let i = 0; i < colCount; i++) {
+    const td = document.createElement('td');
+    td.contentEditable = 'true';
+    td.textContent = '';
+    tr.appendChild(td);
+  }
+  // Add delete row button
+  const delTd = document.createElement('td');
+  delTd.className = 'et-del-col';
+  delTd.innerHTML = '<button class="et-del-btn" onclick="etDelRow(this)" title="Delete row">−</button>';
+  tr.appendChild(delTd);
+  tbody.appendChild(tr);
+  // Focus new first cell
+  tr.querySelector('td[contenteditable]').focus();
+  markDirty();
+}
 
-  // Responsibility fields
-  if (el.classList.contains('resp-field') && el.dataset.rid) {
-    const rid = parseInt(el.dataset.rid);
-    const field = el.dataset.field;
-    if (!state.responsibilities[rid]) state.responsibilities[rid] = {};
-    state.responsibilities[rid][field] = el.innerText.trim();
+function etDelRow(btn) {
+  const row = btn.closest('tr');
+  if (confirm('Delete this row?')) {
+    row.remove();
+    markDirty();
+  }
+}
 
-    // Update RAG dot live
-    if (field === 'rag') {
-      updateRagDot(rid, el.innerText.trim());
-      updateRagSummary();
+function etAddCol(wrapId) {
+  const tbl = document.querySelector('#' + wrapId + ' table');
+  if (!tbl) return;
+  // Add header cell before the delete-col header
+  const headerRow = tbl.querySelector('thead tr');
+  const delColHead = headerRow.querySelector('.et-del-col-head');
+  const th = document.createElement('th');
+  th.contentEditable = 'true';
+  th.className = 'et-th';
+  th.textContent = 'New column';
+  headerRow.insertBefore(th, delColHead);
+  // Add body cells
+  tbl.querySelectorAll('tbody tr').forEach(row => {
+    const delCell = row.querySelector('.et-del-col');
+    const td = document.createElement('td');
+    td.contentEditable = 'true';
+    td.textContent = '';
+    row.insertBefore(td, delCell);
+  });
+  th.focus();
+  markDirty();
+}
+
+function etDelCol(wrapId, btn) {
+  const tbl = document.querySelector('#' + wrapId + ' table');
+  if (!tbl) return;
+  const headerRow = tbl.querySelector('thead tr');
+  const ths = headerRow.querySelectorAll('th:not(.et-del-col-head)');
+  if (ths.length <= 1) { alert('Cannot delete the last column.'); return; }
+  if (!confirm('Delete the last column?')) return;
+  // Count visible columns (excluding del-col-head)
+  const colIdx = ths.length - 1;
+  // Remove from header
+  ths[colIdx].remove();
+  // Remove from each body row
+  tbl.querySelectorAll('tbody tr').forEach(row => {
+    const cells = row.querySelectorAll('td:not(.et-del-col)');
+    if (cells[colIdx]) cells[colIdx].remove();
+  });
+  markDirty();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// COVER LINK CARDS — edit, add, delete
+// ═══════════════════════════════════════════════════════════════════
+let _editingLinkIdx = null;
+let _coverLinkCount = 2; // starts with 2 built-in cards
+
+function editCoverLink(idx) {
+  _editingLinkIdx = idx;
+  const titleEl = document.getElementById('cl-title-' + idx);
+  const subEl = document.getElementById('cl-sub-' + idx);
+  const hrefEl = document.getElementById('cl-href-' + idx);
+  document.getElementById('modal-title').value = titleEl ? titleEl.textContent : '';
+  document.getElementById('modal-sub').value = subEl ? subEl.textContent : '';
+  document.getElementById('modal-url').value = hrefEl ? hrefEl.getAttribute('href') : '';
+  document.getElementById('link-modal').classList.add('open');
+  setTimeout(() => document.getElementById('modal-title').focus(), 50);
+}
+
+function addCoverLink() {
+  const idx = _coverLinkCount++;
+  const container = document.getElementById('cover-links-container');
+  const div = document.createElement('div');
+  div.className = 'cover-link-card';
+  div.id = 'clc-' + idx;
+  div.innerHTML = `
+  <a id="cl-href-${idx}" href="#" class="dl-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span><span class="dl-title" id="cl-title-${idx}">New resource</span><span class="dl-sub" id="cl-sub-${idx}">Click pencil to set the URL and title</span></span>
+  </a>
+  <button class="cl-edit-btn" onclick="editCoverLink(${idx})" aria-label="Edit link">✏</button>`;
+  container.appendChild(div);
+  editCoverLink(idx);
+  markDirty();
+}
+
+function saveModal() {
+  const idx = _editingLinkIdx;
+  if (idx === null) return;
+  const title = document.getElementById('modal-title').value.trim() || 'Untitled';
+  const sub = document.getElementById('modal-sub').value.trim();
+  const url = document.getElementById('modal-url').value.trim() || '#';
+  const titleEl = document.getElementById('cl-title-' + idx);
+  const subEl = document.getElementById('cl-sub-' + idx);
+  const hrefEl = document.getElementById('cl-href-' + idx);
+  if (titleEl) titleEl.textContent = title;
+  if (subEl) subEl.textContent = sub;
+  if (hrefEl) { hrefEl.setAttribute('href', url); if (url.startsWith('http')) hrefEl.setAttribute('target', '_blank'); }
+  closeModal();
+  markDirty();
+}
+
+function deleteCoverLink() {
+  if (_editingLinkIdx === null) return;
+  if (!confirm('Remove this link card?')) return;
+  const card = document.getElementById('clc-' + _editingLinkIdx);
+  if (card) card.remove();
+  closeModal();
+  markDirty();
+}
+
+function closeModal() {
+  document.getElementById('link-modal').classList.remove('open');
+  _editingLinkIdx = null;
+}
+
+// Close modal on overlay click — moved to DOMContentLoaded
+// (see init block below)
+
+// ═══════════════════════════════════════════════════════════════════
+// DATA SCHEMA — single source of truth
+// ═══════════════════════════════════════════════════════════════════
+const SCHEMA_VERSION = "1.0";
+const AUTHOR = "Graeme Wright";
+const COLLEGE = "Weston College Group";
+
+const RESPONSIBILITIES = [
+  { id: 1, phase: 1, title: "Map digital and subject-specific skills with HoAs, TLAMs and coaches",
+    color: "#0A7EA4", fields: ["rag","done","next","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"e.g. Amber — 12 of 20 HoA conversations complete", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which Appendix D KPI area?" }
+  },
+  { id: 2, phase: 1, title: "Teams environment audit with HoA and Digital Leads, follow-up training",
+    color: "#0A7EA4", fields: ["rag","done","next","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which KPI?" }
+  },
+  { id: 3, phase: 1, title: "Clarify Digital Leads vs Digital Champions — engage both structures",
+    color: "#10B981", fields: ["rag","done","next","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which KPI?" }
+  },
+  { id: 4, phase: 1, title: "Design, set up and deliver accessibility by design workshops — iTrent, termly, NSI",
+    color: "#10B981", fields: ["rag","done","next","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"What needs to happen before end of June", milestone:"Define what completion looks like", kpi:"Which KPI?" }
+  },
+  { id: 8, phase: 1, title: "Coaching for AI support and training",
+    color: "#B45309", fields: ["rag","done","next","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities (AI training substantially delivered)", next:"Compile training log; draft college AI position statement", milestone:"Define what completion looks like", kpi:"Which KPI?" }
+  },
+  { id: 10, phase: 1, title: "External networks, horizon scanning — BETT, Digifest, sector events",
+    color: "#B45309", fields: ["rag","done","next","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", next:"Next actions this phase", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", next:"Populate 2026/27 events calendar; block time now", milestone:"Define what completion looks like", kpi:"Which KPI?" }
+  },
+  { id: 5, phase: 2, title: "Create accessibility support videos for Digital Foundations on SharePoint",
+    color: "#5B21B6", fields: ["rag","plan","milestone","kpi"],
+    labels: { rag:"Status / RAG", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"Red — not yet started. Scheduled for summer", plan:"5 screen-recorded videos (Accessibility Checker; alt text; heading styles; captions; links). Published to SharePoint by end of July.", milestone:"5 videos live on SharePoint by end of July", kpi:"Which KPI?" }
+  },
+  { id: 6, phase: 2, title: "IT roadmap and next steps — Learning Without Barriers for ESOL and SEND",
+    color: "#5B21B6", fields: ["rag","done","plan","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", plan:"AT licence audit. Joint meeting with IT and SEND team in July.", milestone:"AT audit complete; IT meeting held; roadmap shared with quality leadership by end of August", kpi:"Which KPI?" }
+  },
+  { id: 7, phase: 2, title: "Videos and resources for Assistive Technology support",
+    color: "#5B21B6", fields: ["rag","plan","milestone","kpi"],
+    labels: { rag:"Status / RAG", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"Red — not yet started", plan:"3 core AT videos: Immersive Reader; Live Captions; Read & Write Gold. Published to SharePoint AT section by end of July.", milestone:"3 AT videos live and distributed to targeted TLAMs in September", kpi:"Which KPI?" }
+  },
+  { id: 9, phase: 2, title: "Lead digital skills training — Jisc, ETF, curated sources, Century for learners",
+    color: "#5B21B6", fields: ["rag","done","plan","milestone","kpi"],
+    labels: { rag:"Status / RAG", done:"What is done", plan:"Plan for summer", milestone:"Milestone (done when…)", kpi:"KPI link" },
+    placeholders: { rag:"RAG and brief summary", done:"Record completed activities", plan:"Jisc Discovery Tool institutional setup by August. TLAM guide written. Century EDS diagnostics in 2026/27 learner induction.", milestone:"Jisc Discovery Tool ready for September; TLAM guide published week 1; Century plan confirmed", kpi:"Which KPI?" }
+  }
+];
+
+const DEFAULT_DATA = {
+  meta: {
+    schemaVersion: "1.0", author: "Graeme Wright", role: "Digital Pedagogy Coach",
+    college: "Weston College Group", pilotStart: "2026-01-01", pilotEnd: "2027-07-31",
+    reviewDates: { threeMonth: "2026-10-01", nineMonth: "2027-04-01", eighteenMonth: "2027-07-01" },
+    compliance: {
+      dataStorage: "Microsoft OneDrive — Weston College Microsoft 365 tenant",
+      iso27001: "Microsoft ISO/IEC 27001:2022 cert no. IS 533913. AES-256 at rest, TLS 1.2+ in transit, access control via college AAD, automated backup.",
+      iso9001: "Each saved JSON file is a dated quality record. Built-in changeLog audit trail. Retention: 18-month pilot plus 3 years.",
+      cyberEssentials: "No data leaves Microsoft 365 boundary. No third-party services or external APIs. Self-contained local HTML file.",
+      gdpr: "Professional activity records only. No learner personal data. Data controller: Weston College Group. Legitimate interests basis.",
+      retentionPolicy: "18-month pilot period (to July 2027) plus 3 years per Weston College data retention schedule.",
+      accessControl: "Owner's OneDrive. Secure link sharing only. Not email attachment.",
+      statementGeneratedAt: "2026-04-06"
     }
-    markDirty();
-  }
+  },
+  responsibilities: {
+    1: { rag: "Amber — HoA meetings started February. ~12 conversations complete. Mapping summary not yet compiled.", done: "First contact with all priority areas. Learning Without Barriers and digital inclusion sessions with Emily Green's Quality Team. Digital hours conversations started with HoAs.", next: "Complete remaining 8 HoA conversations by end of May. Write one-page mapping summary and share with Neil Davies. Present at a CQRP or TLAM group in June.", milestone: "20 HoA conversations logged. One-page summary shared with quality leadership. Mapping referenced in at least one QIP for 2026/27.", kpi: "Teaching Quality Indicators · QIP Traction · Value for Money" },
+    2: { rag: "Red — Digital Health Check template not yet designed. No formal audits. Digital Leads not formally in place.", done: "Informal Teams environment coaching in Healthcare, Engineering, ESOL. Accessibility concerns identified and addressed in coaching sessions.", next: "Design Teams Digital Health Check — 10 items, traffic-light rated, as a Microsoft Form. Run pilot audits with 3–4 areas before end of May.", milestone: "Health Check template live as a Form by end of April. 5 area audits completed by end of May.", kpi: "Teaching Quality Indicators · Staff Capability" },
+    3: { rag: "Amber — Digital Champions programme running. Digital Leads role not yet formally defined or communicated to TLAMs.", done: "Digital Champions network active. Individual meetings held with Champions. Teams community created. DigiWest engagement sustained.", next: "Write one-page Digital Lead role description by end of April. Share with TLAMs. Identify named Digital Leads through TLAM conversations.", milestone: "Digital Lead one-pager agreed with TLAMs by end of May. Named Digital Lead in every area by end of June.", kpi: "Digital Champions · Staff Capability · Teaching Quality Indicators" },
+    4: { rag: "Amber — Accessibility content developed. No formal iTrent workshop booked yet. NSI integration not yet confirmed.", done: "Accessibility Checker coaching delivered to multiple areas. WCAG 2.2 AA embedded in Learning Without Barriers work with Quality Team.", next: "Design 60-minute Accessibility by Design workshop. Book on iTrent for May or June. Email NSI coordinator re August cohort integration.", milestone: "First iTrent session delivered by end of June. NSI slot confirmed for August 2026.", kpi: "Staff Capability · Staff Confidence · Teaching Quality Indicators" },
+    5: { rag: "Red — not yet started. Scheduled for summer.", plan: "Record 5 short videos (under 5 mins each): Accessibility Checker; alt text; heading styles; captions; links. Published to SharePoint Quick Guides by end of July.", milestone: "5 videos live on SharePoint by end of July. SharePoint link shared with all TLAMs in September.", kpi: "Staff Capability · Value for Money" },
+    6: { rag: "Amber — relationship with Liz Burkley and Lois Knight established. AT licence audit not yet done. IT conversation not yet had.", done: "Collaborative work with Katie Middleton on ESOL digital access. SEND SharePoint built with Learning Support.", plan: "Audit AT licence status. Hold joint meeting with IT and SEND team in July. One-page roadmap by end of August.", milestone: "AT licence audit by end of July. IT/SEND meeting held by end of July. Roadmap shared with quality leadership by end of August.", kpi: "Teaching Quality Indicators · Student Experience · Value for Money" },
+    7: { rag: "Red — not yet started. Depends partly on AT licence audit (activity 6).", plan: "Record 3 core AT videos: Immersive Reader; Live Captions in Teams; Read and Write Gold. Published to 'Assistive Technology for Staff' SharePoint section. Distributed to ESOL, Learning Support, FIP, HAC TLAMs.", milestone: "3 AT videos live on SharePoint by end of July. Distributed to targeted TLAMs in September.", kpi: "Student Experience · Staff Capability · Teaching Quality Indicators" },
+    8: { rag: "Green — substantial AI training already delivered. Needs systematising into a repeatable offer in COGs.", done: "AI training: Sixth Form, Maths, Healthcare, Engineering, ESOL, Learning Support, PLS teams. DigiWest PLS AI day. Senior leader Copilot coaching. FE/HE AI distinction navigated.", next: "Compile AI training log — areas, staff numbers, content, testimonials. Draft college AI position statement (3 sentences) — share with Neil Davies for sign-off.", milestone: "AI training log compiled by end of May. College AI position statement agreed by end of June. AI content confirmed as COG theme for 2026/27.", kpi: "Staff Capability · Staff Confidence · Teaching Quality Indicators" },
+    9: { rag: "Amber — ETF DTPF and Jisc framework embedded in TDS document. Jisc Discovery Tool not yet deployed institutionally.", done: "ETF DTPF stages embedded in Teacher Digital Skills document. Jisc BDC in all coaching conversations. Learning pathways written. Jisc AI Literacy modules as prerequisite for AI tool use.", plan: "Confirm Jisc Discovery Tool institutional setup. Pilot with 5–8 staff. Map Century Tech into 2026/27 learner induction. Write one-page TLAM guide.", milestone: "Jisc Discovery Tool ready for September by end of August. TLAM guide published week 1 of September.", kpi: "Staff Capability · Student Experience · Teaching Quality Indicators" },
+    10: { rag: "Amber — DigiWest as internal-facing engagement. No formal events calendar for 2026/27 yet.", done: "Co-organised and delivered DigiWest. Informal engagement with Jisc and ETF. External-facing consultation documents produced.", next: "Populate 2026/27 events calendar — BETT (Jan), Digifest (March), ETF/SET, Jisc BDC Community of Practice. Block time now.", milestone: "Events calendar populated by end of April. One external event per half-term from September.", kpi: "Value for Money · Staff Capability · Professional Collaboration" }
+  },
+  freetext: {
+    phase3notes: "Key Phase 3 commitments (Appendix D governance):\n— 3-month review: October 2026. Baseline data established. Jisc Discovery Tool deployed. First iTrent session delivered.\n— 9-month review: April 2027. Progress against all 8 KPI areas. Digital Leads in place. AI systematised via COGs.\n— 18-month review: July 2027. Comprehensive evidence portfolio. Recommendation on permanent positioning.",
+    coachinglog: "• Feb–March 2026: Digital inclusion Learning Walks with Emily Green and Quality Team. QIP actions added.\n• Oct 2025: AI training — Sixth Form, Maths, Engineering, ESOL, Learning Support, PLS teams.\n• Various: Individual coaching — Jenny Gamlin, Claude Ujile, Katie Middleton, Kara Weymouth, Jed Randall, others.\n• DigiWest: co-organised and delivered. Follow-up coaching requests sustained throughout year.",
+    cpdlog: "Add session records here as they are delivered.",
+    testimoniallog: "Emily Green (TLA Manager): \"This has been vital for our work as a Quality Team.\" — January 2026\nKara Weymouth (Healthcare): \"What sets Graeme apart is that he understands teaching first.\" — January 2026\nJed Randall (Maths): \"Essential for driving high-quality TLA and promoting digital inclusion.\" — January 2026",
+    eventslog: "Add external event records here — date, event name, key takeaway, how shared internally."
+  },
+  changeLog: []
+};
 
-  // Freetext fields
-  if (el.classList.contains('editable-field') && el.dataset.field && !el.dataset.rid) {
-    const key = el.dataset.field;
-    state.freetext[key] = el.innerText.trim();
-    markDirty();
-  }
-});
+let state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+let isDirty = false;
+let currentFileName = null;
+
+// ═══════════════════════════════════════════════════════════════════
+// BUILD ACTION PLAN UI
+// ═══════════════════════════════════════════════════════════════════
+function buildUI() {
+  const p1 = document.getElementById('grid-p1');
+  const p2 = document.getElementById('grid-p2');
+  if (!p1 || !p2) return;
+  p1.innerHTML = '';
+  p2.innerHTML = '';
+  RESPONSIBILITIES.forEach(r => {
+    const grid = r.phase === 1 ? p1 : p2;
+    const data = state.responsibilities[r.id] || {};
+    const card = document.createElement('div');
+    card.className = 'resp-card';
+    card.id = 'card-' + r.id;
+    const ragVal = (data.rag || '').toLowerCase();
+    let ragColor = '#CBD5E1';
+    if (ragVal.startsWith('green')) ragColor = '#10B981';
+    else if (ragVal.startsWith('amber')) ragColor = '#F59E0B';
+    else if (ragVal.startsWith('red')) ragColor = '#EF4444';
+    let fieldsHTML = '';
+    r.fields.forEach(f => {
+      const val = data[f] || '';
+      const ph = (r.placeholders || {})[f] || '';
+      fieldsHTML += `<div class="field-label">${(r.labels || {})[f] || f}</div>
+<div class="editable-field resp-field" contenteditable="true" id="r${r.id}-${f}" data-rid="${r.id}" data-field="${f}" data-placeholder="${ph.replace(/"/g,'&quot;')}">${val ? val.replace(/&/g,'&amp;').replace(/</g,'&lt;') : ''}</div>`;
+    });
+    card.innerHTML = `<div class="resp-head" onclick="toggleCard('card-${r.id}')" aria-expanded="false" aria-controls="body-${r.id}">
+  <div class="resp-num" style="background:${r.color}">${r.id}</div>
+  <div class="resp-title">${r.title}</div>
+  <div id="rag-dot-${r.id}" style="width:10px;height:10px;border-radius:50%;background:${ragColor};flex-shrink:0;margin-top:6px"></div>
+  <span class="resp-toggle" aria-hidden="true">▾</span>
+</div>
+<div class="resp-body" id="body-${r.id}" role="region">${fieldsHTML}</div>`;
+    grid.appendChild(card);
+  });
+  ['phase3notes','coachinglog','cpdlog','testimoniallog','eventslog'].forEach(key => {
+    const el = document.getElementById('field-' + key);
+    if (el) el.textContent = (state.freetext[key] || '').replace(/\n/g, '\n');
+  });
+  renderChangeLog();
+  updateRagSummary();
+}
 
 function updateRagDot(rid, ragText) {
   const dot = document.getElementById('rag-dot-' + rid);
@@ -1480,23 +1657,41 @@ function updateRagDot(rid, ragText) {
 }
 
 function updateRagSummary() {
-  let g = 0, a = 0, r = 0;
+  let g=0,a=0,r=0;
   RESPONSIBILITIES.forEach(resp => {
-    const data = state.responsibilities[resp.id] || {};
-    const rag = (data.rag || '').toLowerCase();
+    const rag = ((state.responsibilities[resp.id] || {}).rag || '').toLowerCase();
     if (rag.startsWith('green')) g++;
     else if (rag.startsWith('amber')) a++;
     else if (rag.startsWith('red')) r++;
   });
-  const cg = document.getElementById('cnt-g');
-  const ca = document.getElementById('cnt-a');
-  const cr = document.getElementById('cnt-r');
+  const cg=document.getElementById('cnt-g'), ca=document.getElementById('cnt-a'), cr=document.getElementById('cnt-r');
   if (cg) cg.textContent = g;
   if (ca) ca.textContent = a;
   if (cr) cr.textContent = r;
 }
 
+// ═══════════════════════════════════════════════════════════════════
+// LIVE EDITING
+// ═══════════════════════════════════════════════════════════════════
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.classList.contains('resp-field') && el.dataset.rid) {
+    const rid = parseInt(el.dataset.rid);
+    const field = el.dataset.field;
+    if (!state.responsibilities[rid]) state.responsibilities[rid] = {};
+    state.responsibilities[rid][field] = el.innerText.trim();
+    if (field === 'rag') { updateRagDot(rid, el.innerText.trim()); updateRagSummary(); }
+    markDirty();
+  }
+  if (el.classList.contains('editable-field') && el.dataset.field && !el.dataset.rid) {
+    state.freetext[el.dataset.field] = el.innerText.trim();
+    markDirty();
+  }
+  if (el.hasAttribute('contenteditable')) markDirty();
+});
+
 function markDirty() {
+  if (isDirty) return;
   isDirty = true;
   const banner = document.getElementById('unsaved-banner');
   if (banner) banner.style.display = 'flex';
@@ -1509,67 +1704,40 @@ function markClean() {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// SAVE — generate JSON and trigger download
+// SAVE / LOAD JSON
 // ═══════════════════════════════════════════════════════════════════
-function saveJSON() {
-  const now = new Date();
-  const dateStr = now.toISOString().slice(0,10); // YYYY-MM-DD
-  const timeStr = now.toISOString().slice(0,19).replace('T',' ');
-
-  // Append change log entry
-  state.changeLog.push({
-    savedAt: timeStr,
-    savedBy: AUTHOR,
-    fileName: `dpc-data-${dateStr}.json`,
-    ragSummary: getRagSummary()
-  });
-
-  // Update meta
-  state.meta.lastModified = timeStr;
-  state.meta.schemaVersion = SCHEMA_VERSION;
-
-  const filename = `dpc-data-${dateStr}.json`;
-  const json = JSON.stringify(state, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-
-  // Update UI
-  currentFileName = filename;
-  document.getElementById('file-status').textContent = filename;
-  document.getElementById('last-saved').textContent = 'Last saved: ' + timeStr + ' — save this file to your OneDrive';
-  markClean();
-  renderChangeLog();
-  flashBtn('save-main-btn', '✓ Saved — save to OneDrive');
-}
-
 function getRagSummary() {
   let g=0,a=0,r=0;
   RESPONSIBILITIES.forEach(resp => {
-    const rag = ((state.responsibilities[resp.id] || {}).rag || '').toLowerCase();
-    if (rag.startsWith('green')) g++;
-    else if (rag.startsWith('amber')) a++;
-    else if (rag.startsWith('red')) r++;
+    const rag = ((state.responsibilities[resp.id]||{}).rag||'').toLowerCase();
+    if (rag.startsWith('green')) g++; else if (rag.startsWith('amber')) a++; else if (rag.startsWith('red')) r++;
   });
   return `Green:${g} Amber:${a} Red:${r}`;
 }
 
-function flashBtn(id, msg) {
-  const btn = document.getElementById(id);
-  if (!btn) return;
-  const orig = btn.innerHTML;
-  btn.textContent = msg;
-  btn.style.background = '#065F46';
-  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 3000);
+function saveJSON() {
+  const now = new Date();
+  const dateStr = now.toISOString().slice(0,10);
+  const timeStr = now.toISOString().slice(0,19).replace('T',' ');
+  state.changeLog.push({ savedAt: timeStr, savedBy: AUTHOR, fileName: `dpc-data-${dateStr}.json`, ragSummary: getRagSummary() });
+  state.meta.lastModified = timeStr;
+  const filename = `dpc-data-${dateStr}.json`;
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+  currentFileName = filename;
+  const fs = document.getElementById('file-status');
+  const ls = document.getElementById('last-saved');
+  if (fs) fs.textContent = filename;
+  if (ls) ls.textContent = 'Last saved: ' + timeStr + ' — save to OneDrive';
+  const css = document.getElementById('cover-save-status');
+  if (css) { css.style.display='block'; css.textContent = '✓ Saved: ' + filename; }
+  markClean();
+  renderChangeLog();
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// LOAD — read JSON file and populate UI
-// ═══════════════════════════════════════════════════════════════════
 function loadJSON(input) {
   const file = input.files[0];
   if (!file) return;
@@ -1577,53 +1745,27 @@ function loadJSON(input) {
   reader.onload = function(e) {
     try {
       const loaded = JSON.parse(e.target.result);
-      // Merge loaded data into state — preserve schema structure
       if (loaded.responsibilities) state.responsibilities = loaded.responsibilities;
       if (loaded.freetext) state.freetext = loaded.freetext;
       if (loaded.changeLog) state.changeLog = loaded.changeLog;
       if (loaded.meta) state.meta = { ...state.meta, ...loaded.meta };
-
       currentFileName = file.name;
-      document.getElementById('file-status').textContent = file.name + ' — loaded';
-      document.getElementById('last-saved').textContent = loaded.meta && loaded.meta.lastModified ? 'Last saved: ' + loaded.meta.lastModified : '';
+      const fs = document.getElementById('file-status');
+      const ls = document.getElementById('last-saved');
+      if (fs) fs.textContent = file.name + ' — loaded';
+      if (ls) ls.textContent = loaded.meta && loaded.meta.lastModified ? 'Last saved: ' + loaded.meta.lastModified : '';
       buildUI();
       markClean();
     } catch(err) {
       alert('Could not read this file. Make sure it is a valid JSON file saved from this toolkit.\n\nError: ' + err.message);
     }
-    input.value = ''; // allow re-loading same file
+    input.value = '';
   };
   reader.readAsText(file);
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// DRAG AND DROP
-// ═══════════════════════════════════════════════════════════════════
-const dropZone = document.getElementById('drop-zone');
-
-document.addEventListener('dragover', e => {
-  if (e.dataTransfer.types.includes('Files')) {
-    e.preventDefault();
-    if (dropZone) dropZone.style.display = 'block';
-  }
-});
-document.addEventListener('dragleave', e => {
-  if (!e.relatedTarget || !document.contains(e.relatedTarget)) {
-    if (dropZone) dropZone.style.display = 'none';
-  }
-});
-document.addEventListener('drop', e => {
-  e.preventDefault();
-  if (dropZone) dropZone.style.display = 'none';
-  const file = e.dataTransfer.files[0];
-  if (file && file.name.endsWith('.json')) {
-    const fakeInput = { files: [file] };
-    loadJSON(fakeInput);
-  }
-});
-
-// ═══════════════════════════════════════════════════════════════════
-// CHANGE LOG UI
+// CHANGE LOG
 // ═══════════════════════════════════════════════════════════════════
 function toggleChangeLog() {
   const panel = document.getElementById('change-log-panel');
@@ -1637,11 +1779,8 @@ function renderChangeLog() {
     container.innerHTML = '<em style="color:var(--lite)">No changes logged yet. Save a JSON file to create the first entry.</em>';
     return;
   }
-  const entries = [...state.changeLog].reverse().slice(0, 50); // most recent first, max 50
-  container.innerHTML = entries.map(e =>
-    `<div style="padding:4px 0;border-bottom:1px solid var(--rule)">
-      <strong style="color:var(--navy)">${e.savedAt}</strong> — ${e.fileName} — ${e.savedBy} — ${e.ragSummary || ''}
-    </div>`
+  container.innerHTML = [...state.changeLog].reverse().slice(0,50).map(e =>
+    `<div style="padding:4px 0;border-bottom:1px solid var(--rule)"><strong style="color:var(--navy)">${e.savedAt}</strong> — ${e.fileName} — ${e.savedBy} — ${e.ragSummary||''}</div>`
   ).join('');
 }
 
@@ -1651,88 +1790,63 @@ function renderChangeLog() {
 function generateAndCopyReport() {
   const now = new Date();
   const dateStr = now.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
-
   let r = 'DIGITAL PEDAGOGY COACH — PROGRESS REPORT\n';
   r += 'Graeme Wright · Quality Team · Weston College Group\n';
-  r += 'Generated: ' + dateStr + '\n';
-  r += '18-Month Pilot — Appendix D KPI Framework\n';
-  r += '─'.repeat(55) + '\n\n';
-
-  r += 'RAG OVERVIEW\n';
-  r += getRagSummary().replace(/:/g, ': ').replace(/\s/g, '  ') + '\n\n';
-
-  r += 'PHASE 1 — FINISH AND FORMALISE (Term 3, April–June 2026)\n\n';
+  r += 'Generated: ' + dateStr + '\n18-Month Pilot — Appendix D KPI Framework\n';
+  r += '─'.repeat(55) + '\n\nRAG OVERVIEW\n' + getRagSummary() + '\n\n';
+  r += 'PHASE 1 — FINISH AND FORMALISE (April–June 2026)\n\n';
   RESPONSIBILITIES.filter(x => x.phase === 1).forEach(resp => {
     const data = state.responsibilities[resp.id] || {};
     r += 'RESPONSIBILITY ' + resp.id + ': ' + resp.title + '\n';
-    resp.fields.forEach(f => {
-      if (data[f]) r += resp.labels[f] + ': ' + data[f] + '\n';
-    });
+    resp.fields.forEach(f => { if (data[f]) r += (resp.labels[f]||f) + ': ' + data[f] + '\n'; });
     r += '\n';
   });
-
   r += 'PHASE 2 — BUILD THE INFRASTRUCTURE (Summer 2026)\n\n';
   RESPONSIBILITIES.filter(x => x.phase === 2).forEach(resp => {
     const data = state.responsibilities[resp.id] || {};
     r += 'RESPONSIBILITY ' + resp.id + ': ' + resp.title + '\n';
-    resp.fields.forEach(f => {
-      if (data[f]) r += resp.labels[f] + ': ' + data[f] + '\n';
-    });
+    resp.fields.forEach(f => { if (data[f]) r += (resp.labels[f]||f) + ': ' + data[f] + '\n'; });
     r += '\n';
   });
-
   r += 'PHASE 3 — SCALE AND SUSTAIN (2026/27)\n';
   if (state.freetext.phase3notes) r += state.freetext.phase3notes + '\n';
-
   r += '\n' + '─'.repeat(55) + '\nEVIDENCE LOG\n\n';
   if (state.freetext.coachinglog) r += 'Coaching sessions:\n' + state.freetext.coachinglog + '\n\n';
   if (state.freetext.cpdlog) r += 'CPD delivered:\n' + state.freetext.cpdlog + '\n\n';
   if (state.freetext.testimoniallog) r += 'Testimonials:\n' + state.freetext.testimoniallog + '\n\n';
   if (state.freetext.eventslog) r += 'External events:\n' + state.freetext.eventslog + '\n\n';
-
-  r += '─'.repeat(55) + '\n';
-  r += 'Digital Pedagogy Toolkit 2026–27 · Weston College · WCAG 2.2 AA\n';
-  if (state.changeLog.length > 0) {
-    const last = state.changeLog[state.changeLog.length - 1];
-    r += 'Data file: ' + (last.fileName || 'unsaved') + ' · Last saved: ' + (last.savedAt || 'never') + '\n';
-  }
-  r += '\nCOMPLIANCE STATEMENT\n';
-  r += 'Data storage: Microsoft OneDrive — Weston College Microsoft 365 tenant\n';
+  r += '─'.repeat(55) + '\nCOMPLIANCE STATEMENT\n';
   r += 'ISO/IEC 27001:2022: Microsoft cert no. IS 533913. AES-256 at rest, TLS 1.2+ in transit.\n';
-  r += 'ISO 9001:2015: Each saved file is a dated quality record with built-in audit trail.\n';
-  r += 'Cyber Essentials Plus: No data leaves Microsoft 365 boundary. No external network requests.\n';
-  r += 'UK GDPR: Professional activity records only. No learner personal data. Controller: Weston College Group.\n';
-  r += 'Retention: 18-month pilot period plus 3 years per Weston College data retention schedule.\n';
-
+  r += 'ISO 9001:2015: Dated quality records with built-in audit trail.\n';
+  r += 'Cyber Essentials Plus: No data leaves Microsoft 365 boundary.\n';
+  r += 'UK GDPR: Professional records only. Controller: Weston College Group.\n';
+  r += 'Digital Pedagogy Toolkit 2026–27 · Weston College · WCAG 2.2 AA\n';
   navigator.clipboard.writeText(r).then(() => {
-    flashBtn(null, null);
-    // Flash the button
-    const btns = document.querySelectorAll('.tb-report');
-    btns.forEach(b => {
+    document.querySelectorAll('.tb-report').forEach(b => {
       const orig = b.innerHTML;
       b.textContent = '✓ Copied to clipboard';
       b.style.background = '#065F46';
       setTimeout(() => { b.innerHTML = orig; b.style.background = ''; }, 3000);
     });
   }).catch(() => {
-    // Fallback
     const ta = document.createElement('textarea');
-    ta.value = r;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
+    ta.value = r; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
   });
 }
 
+function exportReport() { generateAndCopyReport(); }
+
 // ═══════════════════════════════════════════════════════════════════
-// WARN ON UNSAVED CHANGES
+// DRAG AND DROP
+// ═══════════════════════════════════════════════════════════════════
+// Drag-drop — moved to DOMContentLoaded
+// (see init block below)
+
+// ═══════════════════════════════════════════════════════════════════
+// UNSAVED WARNING
 // ═══════════════════════════════════════════════════════════════════
 window.addEventListener('beforeunload', e => {
-  if (isDirty) {
-    e.preventDefault();
-    e.returnValue = 'You have unsaved changes. Save your JSON file before closing.';
-  }
+  if (isDirty) { e.preventDefault(); e.returnValue = 'You have unsaved changes. Save your JSON file before closing.'; }
 });
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1740,8 +1854,54 @@ window.addEventListener('beforeunload', e => {
 // ═══════════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   buildUI();
-});
 
+  // Modal overlay click to close
+  const modal = document.getElementById('link-modal');
+  if (modal) {
+    modal.addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+  }
+
+  // Drag and drop for JSON files
+  const dropZone = document.getElementById('drop-zone');
+  document.addEventListener('dragover', e => {
+    if (e.dataTransfer.types.includes('Files')) {
+      e.preventDefault();
+      if (dropZone) dropZone.style.display = 'block';
+    }
+  });
+  document.addEventListener('dragleave', e => {
+    if (!e.relatedTarget || !document.contains(e.relatedTarget)) {
+      if (dropZone) dropZone.style.display = 'none';
+    }
+  });
+  document.addEventListener('drop', e => {
+    e.preventDefault();
+    if (dropZone) dropZone.style.display = 'none';
+    const file = e.dataTransfer.files[0];
+    if (file && file.name.endsWith('.json')) loadJSON({ files: [file], value: '' });
+  });
+});
 </script>
+
+<!-- Link editor modal -->
+<div class="modal-overlay" id="link-modal" role="dialog" aria-modal="true" aria-label="Edit link">
+  <div class="modal">
+    <h3>Edit link card</h3>
+    <label for="modal-title">Title</label>
+    <input type="text" id="modal-title" placeholder="e.g. Teacher Digital Skills Pyramid">
+    <label for="modal-sub">Subtitle / description</label>
+    <input type="text" id="modal-sub" placeholder="e.g. Full framework · Word document">
+    <label for="modal-url">URL or file path</label>
+    <input type="text" id="modal-url" placeholder="e.g. ./filename.docx or https://...">
+    <div class="modal-actions">
+      <button class="modal-del" onclick="deleteCoverLink()">Delete card</button>
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-save" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

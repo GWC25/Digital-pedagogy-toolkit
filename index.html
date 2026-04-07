@@ -409,18 +409,24 @@ body{background:#eef1f6}
 .et-del-col-head{width:52px;text-align:center}
 .et-del-col{width:44px;text-align:center;vertical-align:middle}
 
-/* ── Stage card items — fix double arrow ───────────────── */
-.sc-item{display:flex;align-items:flex-start;gap:0;padding:9px 12px;cursor:pointer}
-.sc-item:hover{background:var(--tl)}
-.sc-arrow{color:var(--teal);font-weight:900;font-size:14px;flex-shrink:0;transition:transform .2s;
-  line-height:1.55;display:inline-block;margin-right:8px;width:14px;text-align:center}
+/* ── Stage card items ───────────────────────────────────── */
+.sc-item{display:block;padding:0;border-bottom:1px solid var(--rule);cursor:pointer}
+.sc-item:last-child{border-bottom:none}
+.sc-item-top{display:grid;grid-template-columns:18px 1fr;align-items:start;gap:4px;
+  padding:9px 12px;min-height:36px}
+.sc-item:hover .sc-item-top{background:var(--tl)}
+.sc-arrow{color:var(--teal);font-weight:900;font-size:13px;flex-shrink:0;transition:transform .2s;
+  line-height:1.6;text-align:center;padding-top:1px}
 .sc-item.open .sc-arrow{transform:rotate(90deg)}
-.sc-text{font-size:13px;color:var(--mid);line-height:1.55;flex:1}
-.sc-detail{display:none;padding:10px 14px 12px 22px;background:var(--tl);border-radius:4px;
-  margin:4px 0 6px;border-left:3px solid var(--teal)}
-.sc-detail p{font-size:12.5px;color:var(--mid);margin:0;line-height:1.65}
+.sc-text{font-size:13px;color:var(--mid);line-height:1.6}
+.sc-detail{display:none;padding:10px 16px 14px 34px;background:var(--tl);
+  border-left:3px solid var(--teal)}
+.sc-detail-grid{display:grid;grid-template-columns:1fr 2fr;gap:10px 20px}
+.sc-detail-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--navy);padding-top:2px;white-space:nowrap}
+.sc-detail-val{font-size:12.5px;color:var(--mid);line-height:1.65}
 .sc-item.open .sc-detail{display:block}
-/* Remove old sc-item-head wrapper approach — items are now direct flex */
+/* Remove old sc-item-head wrapper */
 .sc-item-head{display:contents}
 
 /* ── CPD lever items ────────────────────────────────────── */
@@ -874,14 +880,62 @@ body{background:#eef1f6}
 <div class="st">Exploring</div>
 <div class="ss">ETF DTPF Stage 1 · DigCompEdu A1–A2 · New and developing teachers</div>
 <ul class="sc-list">
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Confident M365 core use (Teams, Outlook, OneDrive, Word)</span><div class="sc-detail"><p><strong>CPD route:</strong> NSI Digital TLA session. Extended NSI Wednesdays Term 1. Self-paced via Microsoft Learn for Educators (free). <strong>Evidence:</strong> Staff can navigate Teams, share files in OneDrive, send professional email.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Class Team set up with education template</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Pedagogy Coach 1:1 coaching. Teach Meet session on Teams Environments. <strong>Evidence:</strong> Teams Digital Health Check. Channels reflect Scheme of Learning. Students invited.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Accessibility Checker run on every resource</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop (iTrent). NSI digital session. Coaching session. <strong>Evidence:</strong> Resources uploaded to Teams pass Accessibility Checker. Learning Walk observation. WCAG 2.2 AA compliance visible in shared documents.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Alt text, heading styles, WCAG 2.2 AA basics</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop. SharePoint Quick Guide videos (5 videos, each under 5 mins). <strong>Evidence:</strong> Alt text visible on images in shared resources. Heading styles used — not manual bold. Accessibility Checker shows zero errors.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Immersive Reader demonstrated at induction — to all learners</span><div class="sc-detail"><p><strong>CPD route:</strong> NSI Digital TLA session demonstrates the approach. AT SharePoint videos. Coaching session. <strong>Evidence:</strong> Staff can locate and launch Immersive Reader in Teams, Word, and OneNote. Learner Voice referencing accessible learning environments.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">AT awareness — promote tools proactively</span><div class="sc-detail"><p><strong>CPD route:</strong> AT SharePoint resources (Immersive Reader, Live Captions, Read &amp; Write Gold videos). SEND team briefing. Coaching conversation. <strong>Evidence:</strong> Staff can name the AT tools available in their area and demonstrate at least one to learners.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Basic assignment and record-keeping in Teams</span><div class="sc-detail"><p><strong>CPD route:</strong> NSI session. COG Digital Pedagogy — Digital Learning Environments. 1:1 coaching. <strong>Evidence:</strong> At least one Teams Assignment created with due date and brief. Digital progress records maintained.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc Discovery Tool completed (Teaching Staff set)</span><div class="sc-detail"><p><strong>CPD route:</strong> Deployed September each year. Results reviewed in coaching conversation with Digital Pedagogy Coach or TLAM. <strong>Evidence:</strong> Completed profile on record. Personalised learning pathway generated by the tool.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Confident M365 core use (Teams, Outlook, OneDrive, Word)</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">NSI Digital TLA session. Extended NSI Wednesdays Term 1. Self-paced via Microsoft Learn for Educators (free)</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Staff can navigate Teams, share files in OneDrive, send professional email.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Class Team set up with education template</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Digital Pedagogy Coach 1:1 coaching. Teach Meet session on Teams Environments</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Teams Digital Health Check. Channels reflect Scheme of Learning. Students invited.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Accessibility Checker run on every resource</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Accessibility by Design workshop (iTrent). NSI digital session. Coaching session</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Resources uploaded to Teams pass Accessibility Checker. Learning Walk observation. WCAG 2.2 AA compliance visible in shared documents.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Alt text, heading styles, WCAG 2.2 AA basics</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Accessibility by Design workshop. SharePoint Quick Guide videos (5 videos, each under 5 mins)</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Alt text visible on images in shared resources. Heading styles used — not manual bold. Accessibility Checker shows zero errors.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Immersive Reader demonstrated at induction — to all learners</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">NSI Digital TLA session demonstrates the approach. AT SharePoint videos. Coaching session</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Staff can locate and launch Immersive Reader in Teams, Word, and OneNote. Learner Voice referencing accessible learning environments.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">AT awareness — promote tools proactively</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">AT SharePoint resources (Immersive Reader, Live Captions, Read &amp; Write Gold videos). SEND team briefing. Coaching conversation</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Staff can name the AT tools available in their area and demonstrate at least one to learners.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Basic assignment and record-keeping in Teams</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">NSI session. COG Digital Pedagogy — Digital Learning Environments. 1:1 coaching</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">At least one Teams Assignment created with due date and brief. Digital progress records maintained.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Jisc Discovery Tool completed (Teaching Staff set)</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Deployed September each year. Results reviewed in coaching conversation with Digital Pedagogy Coach or TLAM</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Completed profile on record. Personalised learning pathway generated by the tool.</div>
+</div></div>
+</li>
 </ul>
 </div>
 <div class="sc s2a">
@@ -889,14 +943,62 @@ body{background:#eef1f6}
 <div class="st">Adopting — Developing</div>
 <div class="ss">ETF DTPF Stage 2A · DigCompEdu B1 · Developing practitioners</div>
 <ul class="sc-list">
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Assignments with rubrics; feedback via Grades tab</span><div class="sc-detail"><p><strong>CPD route:</strong> COG — Digital Learning Environments. 1:1 coaching with Digital Pedagogy Coach. <strong>Evidence:</strong> Teams Assignment with rubric visible in class Team. Grades tab used for written feedback return.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Forms for formative assessment — results used in planning</span><div class="sc-detail"><p><strong>CPD route:</strong> Teach Meet. 1:1 coaching. Extended NSI Term 1. <strong>Evidence:</strong> Forms quiz embedded in Teams. Lesson plan reference to quiz data informing next steps.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">WCAG 2.2 AA as a consistent professional habit</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop (iTrent). SharePoint Quick Guide videos. <strong>Evidence:</strong> Accessibility Checker run on all resources. Zero errors. Captions on all video content.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 1 completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc free webinar — booking via jisc.ac.uk. Prerequisite for any AI tool adoption. <strong>Evidence:</strong> Completion certificate. Recorded on iTrent CPD log.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Live Captions enabled as default in all Teams sessions</span><div class="sc-detail"><p><strong>CPD route:</strong> AT SharePoint video (2 mins). NSI or coaching conversation. <strong>Evidence:</strong> Live Captions on in Teams settings. Learner Voice referencing accessible sessions.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Copilot awareness — verify all AI outputs</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc AI Literacy Module 1. COG — Using AI to support learning. 1:1 coaching. <strong>Evidence:</strong> Staff can describe how they verify AI outputs. Use logged with critical reflection.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Book with Me for scheduling; OneNote or Loops for notes</span><div class="sc-detail"><p><strong>CPD route:</strong> Self-guided via Microsoft Learn. 1:1 coaching. <strong>Evidence:</strong> Book with Me link in email signature. Meeting notes in OneNote or Loops with consistent structure.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Copilot for email and data interrogation</span><div class="sc-detail"><p><strong>CPD route:</strong> 1:1 coaching session. Microsoft Learn for Educators path. Prerequisite: Jisc AI Literacy Module 1. <strong>Evidence:</strong> Staff can use Copilot to summarise email threads and interrogate spreadsheet data.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Assignments with rubrics; feedback via Grades tab</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">COG — Digital Learning Environments. 1:1 coaching with Digital Pedagogy Coach</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Teams Assignment with rubric visible in class Team. Grades tab used for written feedback return.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Forms for formative assessment — results used in planning</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Teach Meet. 1:1 coaching. Extended NSI Term 1</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Forms quiz embedded in Teams. Lesson plan reference to quiz data informing next steps.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">WCAG 2.2 AA as a consistent professional habit</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Accessibility by Design workshop (iTrent). SharePoint Quick Guide videos</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Accessibility Checker run on all resources. Zero errors. Captions on all video content.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 1 completed</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Jisc free webinar — booking via jisc.ac.uk. Prerequisite for any AI tool adoption</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Completion certificate. Recorded on iTrent CPD log.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Live Captions enabled as default in all Teams sessions</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">AT SharePoint video (2 mins). NSI or coaching conversation</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Live Captions on in Teams settings. Learner Voice referencing accessible sessions.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Copilot awareness — verify all AI outputs</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Jisc AI Literacy Module 1. COG — Using AI to support learning. 1:1 coaching</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Staff can describe how they verify AI outputs. Use logged with critical reflection.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Book with Me for scheduling; OneNote or Loops for notes</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Self-guided via Microsoft Learn. 1:1 coaching</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Book with Me link in email signature. Meeting notes in OneNote or Loops with consistent structure.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Copilot for email and data interrogation</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">1:1 coaching session. Microsoft Learn for Educators path. Prerequisite: Jisc AI Literacy Module 1</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Staff can use Copilot to summarise email threads and interrogate spreadsheet data.</div>
+</div></div>
+</li>
 </ul>
 </div>
 <div class="sc s2b">
@@ -904,14 +1006,62 @@ body{background:#eef1f6}
 <div class="st">Adopting — Embedding</div>
 <div class="ss">ETF DTPF Stage 2B · DigCompEdu B2 · Embedding practitioners</div>
 <ul class="sc-list">
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Accessibility by design — every resource, every time</span><div class="sc-detail"><p><strong>CPD route:</strong> Accessibility by Design workshop. SharePoint Quick Guide videos. Jisc FE Accessibility Training Matrix Phase 2. <strong>Evidence:</strong> All shared resources pass Accessibility Checker. Captions on all video. Zero accessibility errors visible in Learning Walk.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">EDS mapping articulated in Business Plan</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Pedagogy Coach conversation with HoA. TLAM support with QIP Tab 2. <strong>Evidence:</strong> Business Plan includes named EDS categories mapped to digital activity. Digital hours evidenced against EDS.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Forms → Excel → Copilot formative pipeline</span><div class="sc-detail"><p><strong>CPD route:</strong> 1:1 coaching. COG — Digital TLA. Jisc AI Literacy Module 2. <strong>Evidence:</strong> Forms quiz exports to Excel. Copilot used to summarise misconception patterns. Evidence in lesson planning.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">AT advocacy — proactive, not reactive</span><div class="sc-detail"><p><strong>CPD route:</strong> AT SharePoint resources. SEND team collaboration. 1:1 coaching. <strong>Evidence:</strong> AT tools offered to all learners at induction — not only those with recorded needs. ILP references AT where applicable.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Digital Health Check run half-termly</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Lead induction. Digital Pedagogy Coach coaching. <strong>Evidence:</strong> Health Check Form completed. Results shared with TLAM. Actions logged and followed up.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Power Automate for repetitive admin tasks</span><div class="sc-detail"><p><strong>CPD route:</strong> Microsoft Learn for Educators. 1:1 coaching. Stage 3 peer sharing. <strong>Evidence:</strong> At least one working flow automating a recurring task (e.g. Forms data notification, file organisation).</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 2 completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc free webinar — booking via jisc.ac.uk. Builds on Module 1. <strong>Evidence:</strong> Completion certificate. Recorded on iTrent CPD log.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">DigCompEdu self-assessment completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Self-guided via joint-research-centre.ec.europa.eu/digcompedu_en. Review results with Digital Pedagogy Coach. <strong>Evidence:</strong> Personal DigCompEdu profile on record. Mapped against DTPF stage.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Accessibility by design — every resource, every time</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Accessibility by Design workshop. SharePoint Quick Guide videos. Jisc FE Accessibility Training Matrix Phase 2</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">All shared resources pass Accessibility Checker. Captions on all video. Zero accessibility errors visible in Learning Walk.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">EDS mapping articulated in Business Plan</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Digital Pedagogy Coach conversation with HoA. TLAM support with QIP Tab 2</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Business Plan includes named EDS categories mapped to digital activity. Digital hours evidenced against EDS.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Forms → Excel → Copilot formative pipeline</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">1:1 coaching. COG — Digital TLA. Jisc AI Literacy Module 2</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Forms quiz exports to Excel. Copilot used to summarise misconception patterns. Evidence in lesson planning.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">AT advocacy — proactive, not reactive</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">AT SharePoint resources. SEND team collaboration. 1:1 coaching</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">AT tools offered to all learners at induction — not only those with recorded needs. ILP references AT where applicable.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Digital Health Check run half-termly</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Digital Lead induction. Digital Pedagogy Coach coaching</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Health Check Form completed. Results shared with TLAM. Actions logged and followed up.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Power Automate for repetitive admin tasks</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Microsoft Learn for Educators. 1:1 coaching. Stage 3 peer sharing</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">At least one working flow automating a recurring task (e.g. Forms data notification, file organisation).</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 2 completed</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Jisc free webinar — booking via jisc.ac.uk. Builds on Module 1</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Completion certificate. Recorded on iTrent CPD log.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">DigCompEdu self-assessment completed</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Self-guided via joint-research-centre.ec.europa.eu/digcompedu_en. Review results with Digital Pedagogy Coach</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Personal DigCompEdu profile on record. Mapped against DTPF stage.</div>
+</div></div>
+</li>
 </ul>
 </div>
 <div class="sc s3">
@@ -919,14 +1069,62 @@ body{background:#eef1f6}
 <div class="st">Leading</div>
 <div class="ss">ETF DTPF Stage 3 · DigCompEdu C1–C2 · Digital Leads and Coaches</div>
 <ul class="sc-list">
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Coaching Stage 1 and 2 colleagues</span><div class="sc-detail"><p><strong>CPD route:</strong> DfE Advanced Mentoring Skills (Graeme's approach). Digital Lead induction. Peer coaching model. <strong>Evidence:</strong> Coaching log. Staff testimonials. TLAM referral records. Stage 1/2 staff progression data.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Leading institutional AI thinking and policy</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc AI Literacy Module 3. ETF/SET conference. External CPD. <strong>Evidence:</strong> College AI position statement. FE/HE distinction guidance document. COG AI theme designed and delivered.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Digital inclusion advocacy at college level</span><div class="sc-detail"><p><strong>CPD route:</strong> QIP process. SAR contribution. Learning Walk co-design with TLAMs. <strong>Evidence:</strong> Digital inclusion AFIs in QIPs. SAR digital dimension written. Ofsted Inclusion evidence pack contribution.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Digital Champions development</span><div class="sc-detail"><p><strong>CPD route:</strong> Digital Champions programme (Graeme's design). iDEA Award framework. DCI peer mentoring. <strong>Evidence:</strong> Named Champions per area. Project completion records. Learner testimonials. Teams community analytics.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Power Automate advanced flows; Power BI dashboards</span><div class="sc-detail"><p><strong>CPD route:</strong> Microsoft Learn for Educators advanced paths. MCE preparation. Peer sharing. <strong>Evidence:</strong> Working multi-step flows shared with Digital Lead network. Power BI dashboard used in PPR or CQRP.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 3 completed</span><div class="sc-detail"><p><strong>CPD route:</strong> Jisc free webinar — booking via jisc.ac.uk. Covers ethical AI, academic integrity, bias. <strong>Evidence:</strong> Completion certificate. Recorded on iTrent CPD log. Module 3 content incorporated into COG or Teach Meet.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">MCE / 21CLD certification (aspirational)</span><div class="sc-detail"><p><strong>CPD route:</strong> Microsoft Certified Educator preparation via learn.microsoft.com/educator-center. 21CLD curriculum study. <strong>Evidence:</strong> MCE digital badge. 21CLD learning activity design shared with colleagues.</p></div></li>
-<li class="sc-item" onclick="toggleSCItem(this)"><span class="sc-arrow">›</span><span class="sc-text">Contributing to SAR, CQRPs, and QIP with digital evidence</span><div class="sc-detail"><p><strong>CPD route:</strong> Quality Team collaboration (Emily Green, TLAMs). Digital Coaching Platform data. <strong>Evidence:</strong> Named contribution to SAR digital dimension. CQRP TLA Overview includes digital skills coaching records. QIP digital AFIs tracked.</p></div></li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Coaching Stage 1 and 2 colleagues</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">DfE Advanced Mentoring Skills (Graeme's approach). Digital Lead induction. Peer coaching model</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Coaching log. Staff testimonials. TLAM referral records. Stage 1/2 staff progression data.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Leading institutional AI thinking and policy</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Jisc AI Literacy Module 3. ETF/SET conference. External CPD</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">College AI position statement. FE/HE distinction guidance document. COG AI theme designed and delivered.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Digital inclusion advocacy at college level</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">QIP process. SAR contribution. Learning Walk co-design with TLAMs</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Digital inclusion AFIs in QIPs. SAR digital dimension written. Ofsted Inclusion evidence pack contribution.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Digital Champions development</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Digital Champions programme (Graeme's design). iDEA Award framework. DCI peer mentoring</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Named Champions per area. Project completion records. Learner testimonials. Teams community analytics.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Power Automate advanced flows; Power BI dashboards</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Microsoft Learn for Educators advanced paths. MCE preparation. Peer sharing</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Working multi-step flows shared with Digital Lead network. Power BI dashboard used in PPR or CQRP.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Jisc AI Literacy Module 3 completed</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Jisc free webinar — booking via jisc.ac.uk. Covers ethical AI, academic integrity, bias</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Completion certificate. Recorded on iTrent CPD log. Module 3 content incorporated into COG or Teach Meet.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">MCE / 21CLD certification (aspirational)</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Microsoft Certified Educator preparation via learn.microsoft.com/educator-center. 21CLD curriculum study</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">MCE digital badge. 21CLD learning activity design shared with colleagues.</div>
+</div></div>
+</li>
+<li class="sc-item" onclick="toggleSCItem(this)">
+<div class="sc-item-top"><span class="sc-arrow">›</span><span class="sc-text">Contributing to SAR, CQRPs, and QIP with digital evidence</span></div>
+<div class="sc-detail"><div class="sc-detail-grid">
+<div class="sc-detail-label">CPD route</div><div class="sc-detail-val">Quality Team collaboration (Emily Green, TLAMs). Digital Coaching Platform data</div>
+<div class="sc-detail-label">Evidence</div><div class="sc-detail-val">Named contribution to SAR digital dimension. CQRP TLA Overview includes digital skills coaching records. QIP digital AFIs tracked.</div>
+</div></div>
+</li>
 </ul>
 </div>
 </div>
@@ -1422,9 +1620,10 @@ document.querySelectorAll('.cpl[tabindex]').forEach(el => {
 // STAGE CARD — EXPANDABLE ITEMS
 // ═══════════════════════════════════════════════════════════════════
 function toggleSCItem(li) {
-  // Don't toggle if user clicked on an edit field in edit mode
   if (editMode && window.getSelection && window.getSelection().toString()) return;
   li.classList.toggle('open');
+  const arrow = li.querySelector('.sc-arrow');
+  if (arrow) arrow.style.transform = li.classList.contains('open') ? 'rotate(90deg)' : '';
 }
 
 // ═══════════════════════════════════════════════════════════════════

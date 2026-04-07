@@ -60,17 +60,17 @@ nav{background:var(--navy);border-bottom:3px solid var(--teal);max-width:100%;ma
 .cmeta .vl{font-size:13px;color:rgba(255,255,255,.85);font-weight:600;line-height:1.5}
 /* Cover pyramid visual */
 .cpyr{margin:40px 0 44px;display:flex;flex-direction:column;gap:2px;align-items:stretch;max-width:100%}
-.cpl{display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:6px;cursor:pointer;transition:filter .15s}
+.cpl{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px;cursor:pointer;transition:filter .15s;flex-wrap:nowrap}
 .cpl:hover{filter:brightness(1.1)}
 .cpl.f{background:rgba(10,126,164,.32);border-left:4px solid #4FC3F7}
 .cpl.i{background:rgba(6,95,70,.32);border-left:4px solid #34D399}
 .cpl.n{background:rgba(91,33,182,.32);border-left:4px solid #A78BFA}
-.cpl-badge{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex-shrink:0;width:80px;text-align:center}
+.cpl-badge{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex-shrink:0;min-width:72px;width:auto;text-align:center;white-space:nowrap}
 .cpl.f .cpl-badge{background:rgba(79,195,247,.25);color:#4FC3F7}
 .cpl.i .cpl-badge{background:rgba(52,211,153,.25);color:#34D399}
 .cpl.n .cpl-badge{background:rgba(167,139,250,.25);color:#A78BFA}
-.cpl-text{font-size:13.5px;font-weight:700;color:#fff;flex:1}
-.cpl-sub{font-size:11.5px;color:rgba(255,255,255,.55);margin-left:auto;white-space:nowrap}
+.cpl-text{font-size:13px;font-weight:700;color:#fff;flex:1;white-space:normal;line-height:1.3}
+.cpl-sub{font-size:11px;color:rgba(255,255,255,.55);flex-shrink:0;white-space:nowrap;margin-left:8px}
 /* LWB thread indicator */
 .lwb-strip{background:rgba(180,83,9,.22);border:1px solid rgba(180,83,9,.4);border-radius:6px;padding:12px 18px;margin-bottom:40px;display:flex;align-items:center;gap:12px;max-width:100%}
 .lwb-dot{width:10px;height:10px;border-radius:50%;background:var(--lwb);flex-shrink:0}
@@ -538,20 +538,7 @@ body{background:#eef1f6}
 <p class="dl-lbl">Linked documents and data</p>
 <div class="dl-grid">
 <div id="cover-links-container">
-<div class="cover-link-card" id="clc-0">
-  <a id="cl-href-0" href="./teacher-digital-skills-pyramid.docx" class="dl-btn" download>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-    <span><span class="dl-title" id="cl-title-0">Teacher Digital Skills Pyramid</span><span class="dl-sub" id="cl-sub-0">Full framework · Word document</span></span>
-  </a>
-  <button class="cl-edit-btn" onclick="editCoverLink(0)" aria-label="Edit link">✏</button>
-</div>
-<div class="cover-link-card" id="clc-1">
-  <a id="cl-href-1" href="./digital-skills-framework.docx" class="dl-btn" download>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-    <span><span class="dl-title" id="cl-title-1">Digital Skills Framework</span><span class="dl-sub" id="cl-sub-1">All 30 areas · Word document</span></span>
-  </a>
-  <button class="cl-edit-btn" onclick="editCoverLink(1)" aria-label="Edit link">✏</button>
-</div>
+<!-- Rendered dynamically by renderCoverLinks() -->
 </div>
 <button class="dl-btn" onclick="addCoverLink()" style="background:rgba(255,255,255,.05);border-style:dashed;gap:8px">
   <span style="font-size:18px;line-height:1">+</span>
@@ -1530,34 +1517,45 @@ function etDelCol(wrapId, btn) {
 // ═══════════════════════════════════════════════════════════════════
 // COVER LINK CARDS — edit, add, delete
 // ═══════════════════════════════════════════════════════════════════
+// ── Cover link cards — fully data-driven ─────────────────────────
 let _editingLinkIdx = null;
-let _coverLinkCount = 2; // starts with 2 built-in cards
+
+function renderCoverLinks() {
+  const container = document.getElementById('cover-links-container');
+  if (!container) return;
+  if (!state.coverLinks) state.coverLinks = [];
+  const FILE_SVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>`;
+  const LINK_SVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+  container.innerHTML = state.coverLinks.map((lnk, i) => {
+    const isFile = lnk.download || (!lnk.url.startsWith('http') && !lnk.url.startsWith('#'));
+    const icon = isFile ? FILE_SVG : LINK_SVG;
+    const dlAttr = lnk.download ? 'download' : '';
+    const targetAttr = lnk.url.startsWith('http') ? 'target="_blank" rel="noopener"' : '';
+    return `<div class="cover-link-card" id="clc-${i}">
+  <a id="cl-href-${i}" href="${lnk.url}" class="dl-btn" ${dlAttr} ${targetAttr}>
+    ${icon}
+    <span><span class="dl-title" id="cl-title-${i}">${lnk.title}</span><span class="dl-sub" id="cl-sub-${i}">${lnk.sub}</span></span>
+  </a>
+  <button class="cl-edit-btn" onclick="editCoverLink(${i})" aria-label="Edit link">✏</button>
+</div>`;
+  }).join('');
+}
 
 function editCoverLink(idx) {
   _editingLinkIdx = idx;
-  const titleEl = document.getElementById('cl-title-' + idx);
-  const subEl = document.getElementById('cl-sub-' + idx);
-  const hrefEl = document.getElementById('cl-href-' + idx);
-  document.getElementById('modal-title').value = titleEl ? titleEl.textContent : '';
-  document.getElementById('modal-sub').value = subEl ? subEl.textContent : '';
-  document.getElementById('modal-url').value = hrefEl ? hrefEl.getAttribute('href') : '';
+  const lnk = state.coverLinks[idx] || {};
+  document.getElementById('modal-title').value = lnk.title || '';
+  document.getElementById('modal-sub').value = lnk.sub || '';
+  document.getElementById('modal-url').value = lnk.url || '';
   document.getElementById('link-modal').classList.add('open');
   setTimeout(() => document.getElementById('modal-title').focus(), 50);
 }
 
 function addCoverLink() {
-  const idx = _coverLinkCount++;
-  const container = document.getElementById('cover-links-container');
-  const div = document.createElement('div');
-  div.className = 'cover-link-card';
-  div.id = 'clc-' + idx;
-  div.innerHTML = `
-  <a id="cl-href-${idx}" href="#" class="dl-btn">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-    <span><span class="dl-title" id="cl-title-${idx}">New resource</span><span class="dl-sub" id="cl-sub-${idx}">Click pencil to set the URL and title</span></span>
-  </a>
-  <button class="cl-edit-btn" onclick="editCoverLink(${idx})" aria-label="Edit link">✏</button>`;
-  container.appendChild(div);
+  if (!state.coverLinks) state.coverLinks = [];
+  const idx = state.coverLinks.length;
+  state.coverLinks.push({ id: idx, title: 'New resource', sub: 'Click pencil to set the URL and title', url: '#', download: false });
+  renderCoverLinks();
   editCoverLink(idx);
   markDirty();
 }
@@ -1565,15 +1563,13 @@ function addCoverLink() {
 function saveModal() {
   const idx = _editingLinkIdx;
   if (idx === null) return;
+  if (!state.coverLinks) state.coverLinks = [];
   const title = document.getElementById('modal-title').value.trim() || 'Untitled';
   const sub = document.getElementById('modal-sub').value.trim();
   const url = document.getElementById('modal-url').value.trim() || '#';
-  const titleEl = document.getElementById('cl-title-' + idx);
-  const subEl = document.getElementById('cl-sub-' + idx);
-  const hrefEl = document.getElementById('cl-href-' + idx);
-  if (titleEl) titleEl.textContent = title;
-  if (subEl) subEl.textContent = sub;
-  if (hrefEl) { hrefEl.setAttribute('href', url); if (url.startsWith('http')) hrefEl.setAttribute('target', '_blank'); }
+  const isDownload = !url.startsWith('http') && url !== '#';
+  state.coverLinks[idx] = { id: idx, title, sub, url, download: isDownload };
+  renderCoverLinks();
   closeModal();
   markDirty();
 }
@@ -1581,8 +1577,10 @@ function saveModal() {
 function deleteCoverLink() {
   if (_editingLinkIdx === null) return;
   if (!confirm('Remove this link card?')) return;
-  const card = document.getElementById('clc-' + _editingLinkIdx);
-  if (card) card.remove();
+  state.coverLinks.splice(_editingLinkIdx, 1);
+  // Re-index
+  state.coverLinks.forEach((lnk, i) => lnk.id = i);
+  renderCoverLinks();
   closeModal();
   markDirty();
 }
@@ -1690,6 +1688,10 @@ const DEFAULT_DATA = {
     testimoniallog: "Emily Green (TLA Manager): \"This has been vital for our work as a Quality Team.\" — January 2026\nKara Weymouth (Healthcare): \"What sets Graeme apart is that he understands teaching first.\" — January 2026\nJed Randall (Maths): \"Essential for driving high-quality TLA and promoting digital inclusion.\" — January 2026",
     eventslog: "Add external event records here — date, event name, key takeaway, how shared internally."
   },
+  coverLinks: [
+    { id: 0, title: "Teacher Digital Skills Pyramid", sub: "Full framework · Word document", url: "./teacher-digital-skills-pyramid.docx", download: true },
+    { id: 1, title: "Digital Skills Framework", sub: "All 30 areas · Word document", url: "./digital-skills-framework.docx", download: true }
+  ],
   changeLog: []
 };
 
@@ -1828,7 +1830,7 @@ function saveJSON() {
   if (fs) fs.textContent = filename;
   if (ls) ls.textContent = 'Last saved: ' + timeStr + ' — save to OneDrive';
   const css = document.getElementById('cover-save-status');
-  if (css) { css.style.display='block'; css.textContent = '✓ Saved: ' + filename; }
+  if (css) { css.style.display='block'; css.style.color='#4FC3F7'; css.textContent = '✓ Saved: ' + filename + ' (includes link cards)'; }
   markClean();
   renderChangeLog();
 }
@@ -1844,12 +1846,21 @@ function loadJSON(input) {
       if (loaded.freetext) state.freetext = loaded.freetext;
       if (loaded.changeLog) state.changeLog = loaded.changeLog;
       if (loaded.meta) state.meta = { ...state.meta, ...loaded.meta };
+      if (loaded.coverLinks && loaded.coverLinks.length > 0) {
+        state.coverLinks = loaded.coverLinks;
+      }
       currentFileName = file.name;
       const fs = document.getElementById('file-status');
       const ls = document.getElementById('last-saved');
-      if (fs) fs.textContent = file.name + ' — loaded';
-      if (ls) ls.textContent = loaded.meta && loaded.meta.lastModified ? 'Last saved: ' + loaded.meta.lastModified : '';
+      const hadLinks = loaded.coverLinks && loaded.coverLinks.length > 0;
+      if (fs) fs.textContent = file.name + ' — loaded ✓';
+      if (ls) {
+        const savedTime = loaded.meta && loaded.meta.lastModified ? 'Last saved: ' + loaded.meta.lastModified : '';
+        const linkNote = hadLinks ? '' : ' · Link cards: use defaults (re-add and save to persist)';
+        ls.textContent = savedTime + linkNote;
+      }
       buildUI();
+      renderCoverLinks();
       markClean();
     } catch(err) {
       alert('Could not read this file. Make sure it is a valid JSON file saved from this toolkit.\n\nError: ' + err.message);
@@ -1949,6 +1960,7 @@ window.addEventListener('beforeunload', e => {
 // ═══════════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   buildUI();
+  renderCoverLinks();
 
   // Modal overlay click to close
   const modal = document.getElementById('link-modal');
